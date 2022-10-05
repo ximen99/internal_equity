@@ -13,7 +13,7 @@ json_dir = code_folder / "portfolios.json"
 portfolio_data = open(json_dir)
 portfolio_data = json.load(portfolio_data)
 
-date = '2022-08-31'
+date = '2022-09-30'
 
 source_folder = 'Download Extracted'
 time_series_folder = 'Time-series Data'

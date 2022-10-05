@@ -14,7 +14,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4 },
+          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
           "summary": { "nrows": 14 }
         }
       },
@@ -145,7 +145,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
+          "detail": { "skiprows": 13, "end_col": 8 },
           "summary": { "nrows": 13 }
         }
       },
@@ -292,7 +292,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4 },
+          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
           "summary": { "nrows": 14 }
         }
       },
@@ -313,7 +313,7 @@
         }
       },
       "facs": {
-        "folder_name": "AC053EIN_FACS Vs BMK",
+        "folder_name": "AC053EIN Facs Vs BMK",
         "filename": "AC053EIN_Facs exposure vs BMK",
         "sub_tables": {
           "detail": { "skiprows": 11 },
@@ -411,7 +411,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4 },
+          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
           "summary": { "nrows": 14 }
         }
       },
@@ -522,7 +522,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4 },
+          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
           "summary": { "nrows": 14 }
         }
       },
@@ -641,7 +641,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4 },
+          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
           "summary": { "nrows": 14 }
         }
       },
@@ -762,7 +762,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4 },
+          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
           "summary": { "nrows": 14 }
         }
       },
@@ -873,7 +873,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4 },
+          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
           "summary": { "nrows": 14 }
         }
       },
@@ -982,7 +982,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4 },
+          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
           "summary": { "nrows": 14 }
         }
       },
