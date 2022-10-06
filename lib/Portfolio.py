@@ -102,7 +102,7 @@ class Portfolio:
     def _transform_style_attribution(self) -> None:
         exposure_df = self.tables_dict['style_factor']['detail']['df']
         risk_df = self.tables_dict['style_risk']['detail']['df']
-        result_df = tu.industry_attribution(exposure_df, risk_df)
+        result_df = tu.style_attribution(exposure_df, risk_df)
         file_name = self.portfolio_config['portfolio_prefix'] + \
             '_' + 'style_attribution.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})

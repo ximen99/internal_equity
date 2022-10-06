@@ -16,11 +16,11 @@ def add_time_series(data, date_directory, file_dir):
     new_data_three['Date'] = date_directory
     new_data_three = new_data_three.set_index('Date')
     time_series_data_updated = time_series(
-        file_dir, new_data_three, 999)
+        file_dir, new_data_three)
     return time_series_data_updated
 
 
-def time_series(file_dir, dataframe_to_append, number_of_rows):
+def time_series(file_dir, dataframe_to_append):
     new_data = pd.read_excel(file_dir)
     new_data['Date'] = pd.to_datetime(new_data['Date']).dt.date
     x = dataframe_to_append.reset_index()
@@ -32,7 +32,6 @@ def time_series(file_dir, dataframe_to_append, number_of_rows):
         appended_data = appended_data.append(x)
     # Sort by recency
     sorted_data = appended_data.sort_values('Date', ascending=True)
-    last_rows = list(sorted_data['Date'].unique())[(-1 * number_of_rows):]
     excel_data = sorted_data.set_index(['Date'])
     excel_data.to_excel(file_dir)
     return excel_data
@@ -62,14 +61,14 @@ def risk_decomposition(data):
 
 
 def replace_column_names(data, source_of_return):
-    z = data.columns
-    column_names = ['Source of Return',
-                    'Total Contribution', 'Average active exposure']
+    df_cols = data.columns
+    col_names_to_replace = ['Source of Return',
+                            'Total Contribution', 'Average active exposure']
     new_column_names = [
         source_of_return, 'Active Return Contribution', 'Average Active Exposure (Z-Sc)']
-    for i, h in zip(column_names, new_column_names):
-        z = z.str.replace(i, h)
-        data.columns = z
+    for i, h in zip(col_names_to_replace, new_column_names):
+        df_cols = df_cols.str.replace(i, h)
+        data.columns = df_cols
     return data
 
 
