@@ -1,118 +1,134 @@
+from typing import List
 import pandas as pd
 import numpy as np
+import pathlib as p
 
 
-def remove_substring_from_columns(data, patterns):
+def remove_substring_from_columns(data: pd.DataFrame, patterns: List[str]) -> pd.DataFrame:
     for i in patterns:
         data.columns = data.columns.str.replace(i, '')
     return data
 
 
-def add_time_series(data, date_directory, file_dir):
-    new_data = remove_substring_from_columns(data, ['FaCS ', ' - Active'])
-    new_data_two = new_data[new_data['Asset Name'].isnull()]
-    new_data_three = new_data_two[[
-        'Growth', 'Liquidity', 'Momentum', 'Quality', 'Size', 'Value', 'Volatility', 'Yield']]
-    new_data_three['Date'] = date_directory
-    new_data_three = new_data_three.set_index('Date')
+def add_time_series(data: pd.DataFrame, date: str, file_dir: p.Path):
+    df = (
+        remove_substring_from_columns(data, ['FaCS ', ' - Active'])
+        .query('`Asset Name`.isnull()', engine='python')
+        .filter(['Growth', 'Liquidity', 'Momentum', 'Quality', 'Size', 'Value', 'Volatility', 'Yield'], axis=1)
+        .assign(Date=date)
+        .set_index("Date")
+    )
     time_series_data_updated = time_series(
-        file_dir, new_data_three)
+        file_dir, df)
     return time_series_data_updated
 
 
-def time_series(file_dir, dataframe_to_append):
-    new_data = pd.read_excel(file_dir)
-    new_data['Date'] = pd.to_datetime(new_data['Date']).dt.date
-    x = dataframe_to_append.reset_index()
-    x['Date'] = pd.to_datetime(x['Date']).dt.date
-    if new_data['Date'].isin(x['Date']).any() == False:
-        appended_data = new_data.append(x)
+def time_series(file_dir: p.Path, dataframe_to_append: pd.DataFrame) -> pd.DataFrame:
+    time_series_df = (
+        pd.read_excel(file_dir)
+        .assign(Date=lambda df_: pd.to_datetime(df_.Date).dt.date)
+    )
+    dataframe_to_append = (
+        dataframe_to_append
+        .reset_index()
+        .assign(Date=lambda df_: pd.to_datetime(df_.Date).dt.date)
+    )
+    new_dates = dataframe_to_append['Date'].tolist()
+    if time_series_df['Date'].isin(new_dates).any() == False:
+        appended_data = time_series_df.append(dataframe_to_append)
     else:
-        appended_data = new_data[new_data['Date'].isin(x['Date']) == False]
-        appended_data = appended_data.append(x)
-    # Sort by recency
-    sorted_data = appended_data.sort_values('Date', ascending=True)
-    excel_data = sorted_data.set_index(['Date'])
-    excel_data.to_excel(file_dir)
-    return excel_data
+        appended_data = (
+            time_series_df
+            .query('Date not in @new_dates')
+            .append(dataframe_to_append)
+            .sort_values('Date', ascending=True)
+            .set_index(['Date'])
+        )
+    appended_data.to_excel(file_dir)
+    return appended_data
 
 
-def remove_percentages(data, column_start):
+def remove_percentages(data: pd.DataFrame, column_start: str = None) -> pd.DataFrame:
     for i in data.loc[:, column_start:]:
         if data[i].dtypes == 'object':
             data[i] = data[i].str.rstrip('%').astype('float') / 100.0
     return data
 
 
-def return_decomposition(data):
-    data = remove_substring_from_columns(
-        data, [' Period Net Contribution ', ' Period Cumulative Net Contribution ', 'Return', '% ', '(', ')'])
-    data = remove_percentages(data, 'Active')
-    data = data.set_index(data.columns[0])
-    return data
+def return_decomposition(data: pd.DataFrame) -> pd.DataFrame:
+    return (
+        data
+        .pipe(remove_substring_from_columns, [' Period Net Contribution ', ' Period Cumulative Net Contribution ', 'Return', '% ', '(', ')'])
+        .pipe(remove_percentages, 'Active')
+        .pipe(lambda df_: df_.set_index(df_.columns[0]))
+    )
 
 
-def risk_decomposition(data):
-    data = remove_substring_from_columns(
-        data, ['Net Period Forecast ', ' Active Risk Contribution', ' Risk'])
-    data = remove_percentages(data, 'Active')
-    data = data.set_index(data.columns[0])
-    return data
+def risk_decomposition(data: pd.DataFrame) -> pd.DataFrame:
+    return (
+        data
+        .pipe(remove_substring_from_columns, ['Net Period Forecast ', ' Active Risk Contribution', ' Risk'])
+        .pipe(remove_percentages, 'Active')
+        .pipe(lambda df_: df_.set_index(df_.columns[0]))
+    )
 
 
-def replace_column_names(data, source_of_return):
+def replace_column_names(data: pd.DataFrame, source_of_return: str) -> pd.DataFrame:
     df_cols = data.columns
     col_names_to_replace = ['Source of Return',
                             'Total Contribution', 'Average active exposure']
     new_column_names = [
         source_of_return, 'Active Return Contribution', 'Average Active Exposure (Z-Sc)']
-    for i, h in zip(col_names_to_replace, new_column_names):
-        df_cols = df_cols.str.replace(i, h)
-        data.columns = df_cols
+    for to_replace_name, new_name in zip(col_names_to_replace, new_column_names):
+        df_cols = df_cols.str.replace(to_replace_name, new_name)
+    data.columns = df_cols
     return data
 
 
-def industry_attribution(exposure_data, risk_data):
-    cleaned_exposure_data = remove_substring_from_columns(
-        exposure_data, ['Net', 'Cumulative', '[', '] '])
-    cleaned_exposure_data_two = remove_percentages(
-        cleaned_exposure_data, 'Total Contribution')
-    final_exposure_data = replace_column_names(
-        cleaned_exposure_data_two, 'GICS Sector')
-    final_exposure_data = final_exposure_data[final_exposure_data['Parent Node'] == '/Industry']
-
-    cleaned_risk_data_two = remove_percentages(
-        risk_data, 'Active Risk Contribution')
-    cleaned_risk_data_two['GICS Sector'] = cleaned_risk_data_two['Factor']
-    final = pd.merge(final_exposure_data, cleaned_risk_data_two, on=[
-                     'GICS Sector', 'Parent Node'], how='left')
-    final = final[[
-        'GICS Sector', 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution']]
-    data = final.set_index('GICS Sector')
-    return data
-
-
-def style_attribution(exposure_data, risk_data):
-    cleaned_exposure_data = remove_substring_from_columns(
-        exposure_data, ['Net', 'Cumulative', '[', '] '])
-    cleaned_exposure_data_two = remove_percentages(
-        cleaned_exposure_data, 'Total Contribution')
-    final_exposure_data = replace_column_names(
-        cleaned_exposure_data_two, 'Factor')
-    final_exposure_data = final_exposure_data[final_exposure_data['Parent Node']
-                                              == '/Risk Indices']
-
-    cleaned_risk_data_two = remove_percentages(
-        risk_data, 'Active Risk Contribution')
-    final = pd.merge(final_exposure_data, cleaned_risk_data_two,
-                     on=['Factor', 'Parent Node'], how='left')
-    final = final[[
-        'Factor', 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution']]
-    data = final.set_index('Factor')
-    return data
+def industry_attribution(factor_data: pd.DataFrame, risk_data: pd.DataFrame) -> pd.DataFrame:
+    factor_data_cleaned = (
+        factor_data
+        .pipe(remove_substring_from_columns, ['Net', 'Cumulative', '[', '] '])
+        .pipe(remove_percentages, 'Total Contribution')
+        .pipe(replace_column_names, 'GICS Sector')
+        .query("`Parent Node` == '/Industry'")
+    )
+    risk_data_cleaned = (
+        risk_data
+        .pipe(remove_percentages, 'Active Risk Contribution')
+        .assign(**{'GICS Sector': lambda df_: df_.Factor})
+    )
+    final = (
+        pd.merge(factor_data_cleaned, risk_data_cleaned, on=[
+            'GICS Sector', 'Parent Node'], how='left')
+        .filter(['GICS Sector', 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution'], axis=1)
+        .set_index('GICS Sector')
+    )
+    return final
 
 
-def status(data):
+def style_attribution(factor_data: pd.DataFrame, risk_data: pd.DataFrame) -> pd.DataFrame:
+    factor_data_cleaned = (
+        factor_data
+        .pipe(remove_substring_from_columns, ['Net', 'Cumulative', '[', '] '])
+        .pipe(remove_percentages, 'Total Contribution')
+        .pipe(replace_column_names, 'Factor')
+        .query("`Parent Node` == '/Risk Indices'")
+    )
+    risk_data_cleaned = (
+        risk_data
+        .pipe(remove_percentages, 'Active Risk Contribution')
+    )
+    final = (
+        pd.merge(factor_data_cleaned, risk_data_cleaned,
+                 on=['Factor', 'Parent Node'], how='left')
+        .filter(['Factor', 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution'], axis=1)
+        .set_index('Factor')
+    )
+    return final
+
+
+def status(data: pd.DataFrame) -> pd.DataFrame:
     conditions = [
         (data['Periods In Benchmark'] == 0),
         (data['Periods In Portfolio'] == 0) & (
@@ -129,20 +145,21 @@ def status(data):
     return data
 
 
-def stock_selection(data):
-    data = status(data)
-    data = data.pivot_table(values='Cumulative Net Specific Contribution',
-                            index='GICS Sector Name', columns='Status', aggfunc='sum', fill_value=0)
-    data['Grand Total'] = data.sum(axis=1)
-    data.name = 'gl_th_factors_specific_contrib_by_factor.csv'
-    if 'Bmk Stock Not Held' not in data:
-        data['Bmk Stock Not Held'] = 0
-    data = data[['Bmk Stock Held', 'Bmk Stock Not Held',
-                 'Out of Bmk Stock', 'Grand Total']]
-    return data
+def stock_selection(data: pd.DataFrame) -> pd.DataFrame:
+    result_df = (
+        data
+        .pipe(status)
+        .pivot_table(values='Cumulative Net Specific Contribution', index='GICS Sector Name', columns='Status', aggfunc='sum', fill_value=0)
+        .assign(**{
+            'Grand Total': lambda df_: df_.sum(axis=1),
+            'Bmk Stock Not Held': lambda df_: 0 if 'Bmk Stock Not Held' not in df_ else df_['Bmk Stock Not Held']
+        })
+        .filter(['Bmk Stock Held', 'Bmk Stock Not Held', 'Out of Bmk Stock', 'Grand Total'], axis=1)
+    )
+    return result_df
 
 
-def attribution_matrix(data):
+def attribution_matrix(data: pd.DataFrame) -> pd.DataFrame:
     new_data = data.pivot_table(values=['Average Active Weight', 'Cumulative Net Active Return Contribution', 'Cumulative Net Country Contribution', 'Cumulative Net Industry Contribution',
                                 'Cumulative Net Risk Indices Contribution', 'Cumulative Net Specific Contribution', 'Cumulative Net Currency Contribution', 'Cumulative Net World Contribution'], index='GICS Sector Name', aggfunc='sum')
     new_data.columns = ['Avg Act Weight', 'Active Return', 'Country',
@@ -154,7 +171,7 @@ def attribution_matrix(data):
     return new_data
 
 
-def attribution_matrix_canadian(data):
+def attribution_matrix_canadian(data: pd.DataFrame) -> pd.DataFrame:
     new_data = data.pivot_table(values=['Average Active Weight', 'Cumulative Net Active Return Contribution', 'Cumulative Net Country Contribution',
                                 'Cumulative Net Industry Contribution', 'Cumulative Net Risk Indices Contribution', 'Cumulative Net Specific Contribution'], index='GICS Sector Name', aggfunc='sum')
     new_data.columns = ['Avg Act Weight', 'Active Return',
@@ -166,13 +183,14 @@ def attribution_matrix_canadian(data):
     return new_data
 
 
-def top_bottom(data, table_name):
-    filtered_data = data[data['GICS Sector Name'] != 'Cash']
-    new_data = pd.pivot_table(filtered_data, values=['Periods In Portfolio', 'Periods In Benchmark', 'Average Active Weight',
-                              'Cumulative Specific Contribution', 'Cumulative Active Return Contribution'], index=['Asset Id', 'Asset Name', 'GICS Sector Name'], aggfunc='sum')
-    new_data = new_data[['Periods In Portfolio', 'Periods In Benchmark', 'Average Active Weight',
-                         'Cumulative Specific Contribution', 'Cumulative Active Return Contribution']]
-    new_data = new_data.reset_index()
-    new_data.columns = ['Asset ID', table_name, 'GICS Sector', 'Periods In Portfolio',
+def top_bottom(data: pd.DataFrame, table_name: str) -> pd.DataFrame:
+    final_df = (
+        data
+        .query("`GICS Sector Name` != 'Cash'")
+        .pivot_table(values=['Periods In Portfolio', 'Periods In Benchmark', 'Average Active Weight', 'Cumulative Specific Contribution', 'Cumulative Active Return Contribution'], index=['Asset Id', 'Asset Name', 'GICS Sector Name'], aggfunc='sum')
+        .filter(['Periods In Portfolio', 'Periods In Benchmark', 'Average Active Weight', 'Cumulative Specific Contribution', 'Cumulative Active Return Contribution'], axis=1)
+        .reset_index()
+    )
+    final_df.columns = ['Asset ID', table_name, 'GICS Sector', 'Periods In Portfolio',
                         'Periods In Benchmark', 'Average Active Weight', 'Selection', 'Total']
-    return new_data
+    return final_df

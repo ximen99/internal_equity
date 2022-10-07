@@ -85,24 +85,28 @@ class Portfolio:
 
     def _transform_risk_summary(self) -> None:
         df = self.tables_dict['factors_return_attribution']['detail']['df']
-        result_df = df[df['Source of Return'].isin(['Total Managed', 'Total Benchmark', 'Total Active', 'Country', 'Industry', 'Risk Indices', 'Specific', 'Currency', 'World'])][[
-            'Source of Return', '[Full Time-span] [Cumulative] [Net] Risk']].set_index('Source of Return')
+        result_df = (
+            df
+            .query("`Source of Return` in ['Total Managed', 'Total Benchmark', 'Total Active', 'Country', 'Industry', 'Risk Indices', 'Specific', 'Currency', 'World']")
+            .filter(['Source of Return', '[Full Time-span] [Cumulative] [Net] Risk'], axis=1)
+            .set_index('Source of Return')
+        )
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
             'risk_summary.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
 
     def _transform_industry_attribution(self) -> None:
-        exposure_df = self.tables_dict['industry_factor']['detail']['df']
+        factor_df = self.tables_dict['industry_factor']['detail']['df']
         risk_df = self.tables_dict['industry_risk']['detail']['df']
-        result_df = tu.industry_attribution(exposure_df, risk_df)
+        result_df = tu.industry_attribution(factor_df, risk_df)
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
             'industry_attribution.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
 
     def _transform_style_attribution(self) -> None:
-        exposure_df = self.tables_dict['style_factor']['detail']['df']
+        factor_df = self.tables_dict['style_factor']['detail']['df']
         risk_df = self.tables_dict['style_risk']['detail']['df']
-        result_df = tu.style_attribution(exposure_df, risk_df)
+        result_df = tu.style_attribution(factor_df, risk_df)
         file_name = self.portfolio_config['portfolio_prefix'] + \
             '_' + 'style_attribution.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
