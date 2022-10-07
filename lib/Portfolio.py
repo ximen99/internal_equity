@@ -66,6 +66,7 @@ class Portfolio:
     def _transform_return_decomp_by_factor_single(self) -> None:
         df = self.tables_dict['factors_return_decomp_by_factor']['detail']['df']
         result_df = df.iloc[-1]
+        result_df.name = 'Contribution'
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
             'factors_return_decomp_by_factor_single.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})

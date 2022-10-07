@@ -90,19 +90,19 @@ def industry_attribution(factor_data: pd.DataFrame, risk_data: pd.DataFrame) -> 
         factor_data
         .pipe(remove_substring_from_columns, ['Net', 'Cumulative', '[', '] '])
         .pipe(remove_percentages, 'Total Contribution')
-        .pipe(replace_column_names, 'GICS Sector')
+        .pipe(replace_column_names, 'Industry (Factors), MSCI')
         .query("`Parent Node` == '/Industry'")
     )
     risk_data_cleaned = (
         risk_data
         .pipe(remove_percentages, 'Active Risk Contribution')
-        .assign(**{'GICS Sector': lambda df_: df_.Factor})
+        .assign(**{'Industry (Factors), MSCI': lambda df_: df_.Factor})
     )
     final = (
         pd.merge(factor_data_cleaned, risk_data_cleaned, on=[
-            'GICS Sector', 'Parent Node'], how='left')
-        .filter(['GICS Sector', 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution'], axis=1)
-        .set_index('GICS Sector')
+            'Industry (Factors), MSCI', 'Parent Node'], how='left')
+        .filter(['Industry (Factors), MSCI', 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution'], axis=1)
+        .set_index('Industry (Factors), MSCI')
     )
     return final
 
@@ -112,7 +112,7 @@ def style_attribution(factor_data: pd.DataFrame, risk_data: pd.DataFrame) -> pd.
         factor_data
         .pipe(remove_substring_from_columns, ['Net', 'Cumulative', '[', '] '])
         .pipe(remove_percentages, 'Total Contribution')
-        .pipe(replace_column_names, 'Factor')
+        .pipe(replace_column_names, 'Style (Factors), MSCI')
         .query("`Parent Node` == '/Risk Indices'")
     )
     risk_data_cleaned = (
@@ -121,9 +121,9 @@ def style_attribution(factor_data: pd.DataFrame, risk_data: pd.DataFrame) -> pd.
     )
     final = (
         pd.merge(factor_data_cleaned, risk_data_cleaned,
-                 on=['Factor', 'Parent Node'], how='left')
-        .filter(['Factor', 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution'], axis=1)
-        .set_index('Factor')
+                 on=['Style (Factors), MSCI', 'Parent Node'], how='left')
+        .filter(['Style (Factors), MSCI', 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution'], axis=1)
+        .set_index('Style (Factors), MSCI')
     )
     return final
 
