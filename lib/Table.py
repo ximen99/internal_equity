@@ -14,30 +14,30 @@ class Table:
         self.table_name = table_name
         self.table_dict = {}
 
-    def _infer_dir_port(self, portfolio: str, settings: str, filename: str) -> None:
-        file_dir_str = self.date + '_' + portfolio + ' ' + settings
-        self._folder_dir = self.workingDir / self.source_folder / self.date / file_dir_str
+    def _infer_folder_port(self, portfolio: str, settings: str, filename: str) -> None:
+        file_folder = self.date + '_' + portfolio + ' ' + settings
+        self._folder_dir = self.workingDir / self.source_folder / self.date / file_folder
         self._start_str = self.date + '_' + portfolio + '_' + filename + '#'
 
-    def _infer_dir_trailing_name(self, portfolio: str, trailing_name: str, settings: str, filename: str) -> None:
-        file_dir_str = self.date + '_' + portfolio + ' ' + trailing_name + ' ' + settings
-        self._folder_dir = self.workingDir / self.source_folder / self.date / file_dir_str
+    def _infer_folder_trailing_name(self, portfolio: str, trailing_name: str, settings: str, filename: str) -> None:
+        file_folder = self.date + '_' + portfolio + ' ' + trailing_name + ' ' + settings
+        self._folder_dir = self.workingDir / self.source_folder / self.date / file_folder
         self._start_str = self.date + '_' + portfolio + '_' + filename + '#'
 
-    def _infer_dir_prefix_name(self, portfolio: str, prefix_name: str, settings: str, filename: str) -> None:
-        file_dir_str = self.date + '_' + prefix_name + ' ' + portfolio + ' ' + settings
-        self._folder_dir = self.workingDir / self.source_folder / self.date / file_dir_str
+    def _infer_folder_prefix_name(self, portfolio: str, prefix_name: str, settings: str, filename: str) -> None:
+        file_folder = self.date + '_' + prefix_name + ' ' + portfolio + ' ' + settings
+        self._folder_dir = self.workingDir / self.source_folder / self.date / file_folder
         self._start_str = self.date + '_' + portfolio + '_' + filename + '#'
 
-    def _infer_dir_filename_prefix(self, portfolio: str, filename_prefix: str, settings: str, filename: str) -> None:
-        file_dir_str = self.date + '_' + portfolio + ' ' + settings
-        self._folder_dir = self.workingDir / self.source_folder / self.date / file_dir_str
+    def _infer_folder_filename_prefix(self, portfolio: str, filename_prefix: str, settings: str, filename: str) -> None:
+        file_folder = self.date + '_' + portfolio + ' ' + settings
+        self._folder_dir = self.workingDir / self.source_folder / self.date / file_folder
         self._start_str = self.date + '_' + portfolio + \
             '_' + filename_prefix + '_' + filename + '#'
 
-    def _infer_dir_custom(self, folder_name: str, filename: str) -> None:
-        file_dir_str = self.date + '_' + folder_name
-        self._folder_dir = self.workingDir / self.source_folder / self.date / file_dir_str
+    def _infer_folder_custom(self, folder_name: str, filename: str) -> None:
+        file_folder = self.date + '_' + folder_name
+        self._folder_dir = self.workingDir / self.source_folder / self.date / file_folder
         self._start_str = self.date + '_' + filename + '#'
 
     def _find_file(self) -> None:
@@ -50,22 +50,22 @@ class Table:
             raise Exception(
                 f"Can't find file in {self._folder_dir} starts with {self._start_str}")
 
-    def _infer_dir(self) -> None:
+    def _infer_folder(self) -> None:
         table_config = self.table_config
         if 'trailing_name' in table_config:
-            self._infer_dir_trailing_name(
+            self._infer_folder_trailing_name(
                 self.portfolio_code, table_config['trailing_name'], table_config['settings'], table_config['filename'])
         elif 'prefix_name' in table_config:
-            self._infer_dir_prefix_name(
+            self._infer_folder_prefix_name(
                 self.portfolio_code, table_config['prefix_name'], table_config['settings'], table_config['filename'])
         elif 'filename_prefix' in table_config:
-            self._infer_dir_filename_prefix(
+            self._infer_folder_filename_prefix(
                 self.portfolio_code, table_config['filename_prefix'], table_config['settings'], table_config['filename'])
         elif 'settings' in table_config:
-            self._infer_dir_port(
+            self._infer_folder_port(
                 self.portfolio_code, table_config['settings'], table_config['filename'])
         else:
-            self._infer_dir_custom(
+            self._infer_folder_custom(
                 table_config['folder_name'], table_config['filename'])
 
     def _read_csv(self, start_row=None, end_row=None, start_col=None, end_col=None, **kwargs) -> pd.DataFrame:
@@ -88,8 +88,8 @@ class Table:
 
     def load(self) -> None:
         # find folder and start string
-        self._infer_dir()
+        self._infer_folder()
         # locate file
         self._find_file()
-        # load csv and store dataframe to list
+        # load csv and store dataframe to dict
         self._load_df_dict()

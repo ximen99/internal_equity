@@ -118,6 +118,7 @@ def style_attribution(factor_data: pd.DataFrame, risk_data: pd.DataFrame) -> pd.
     risk_data_cleaned = (
         risk_data
         .pipe(remove_percentages, 'Active Risk Contribution')
+        .assign(**{'Style (Factors), MSCI': lambda df_: df_.Factor})
     )
     final = (
         pd.merge(factor_data_cleaned, risk_data_cleaned,
