@@ -10,7 +10,7 @@ def remove_substring_from_columns(data: pd.DataFrame, patterns: List[str]) -> pd
     return data
 
 
-def add_time_series(data: pd.DataFrame, date: str, file_dir: p.Path):
+def add_time_series(data: pd.DataFrame, date: str, file_dir: p.Path) -> pd.DataFrame:
     df = (
         remove_substring_from_columns(data, ['FaCS ', ' - Active'])
         .query('`Asset Name`.isnull()', engine='python')

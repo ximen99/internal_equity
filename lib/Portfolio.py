@@ -113,12 +113,13 @@ class Portfolio:
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
 
     def _transform_specific(self) -> None:
-        df = self.tables_dict['specific']['detail']['df']
-        result_df = df[df['Asset Name'].str.contains('Total') == False]
-        result_df = tu.remove_percentages(
-            result_df, 'Average Portfolio Weight')
-        result_df['GICS Sector Name'] = result_df['GICS Sector Name'].fillna(
-            'Cash')
+        df: pd.DataFrame = self.tables_dict['specific']['detail']['df']
+        result_df = (
+            df
+            .query("`Asset Name`.str.contains('Total') == False", engine="python")
+            .pipe(tu.remove_percentages, 'Average Portfolio Weight')
+            .assign(**{'GICS Sector Name': lambda df_: df_['GICS Sector Name'].fillna('Cash')})
+        )
         self.tables_dict['specific']['detail']['df'] = result_df
         self.transform_dfs.append(self.tables_dict['specific']['detail'])
 
@@ -138,24 +139,33 @@ class Portfolio:
 
     def _transform_top_bottom(self) -> None:
         df = self.tables_dict['factors_top_bottom_by_factor']['detail']['df']
-        result_df = df[df['Asset Name'].str.contains('Total') == False]
-        result_df = tu.remove_percentages(result_df, 'Average Active Weight')
+        result_df = (
+            df
+            .query("`Asset Name`.str.contains('Total') == False", engine="python")
+            .pipe(tu.remove_percentages, 'Average Active Weight')
+        )
         # initialize transform sub table dict
         self.tables_dict['factors_top_bottom_by_factor']['transform'] = {}
         self.tables_dict['factors_top_bottom_by_factor']['transform']['df'] = result_df
 
     def _transform_top_ten(self) -> None:
         df = self.tables_dict['factors_top_bottom_by_factor']['transform']['df']
-        result_df = tu.top_bottom(df, 'FYTD Top 10').nlargest(
-            n=10, columns=['Total'])
+        result_df = (
+            df
+            .pipe(tu.top_bottom, 'FYTD Top 10')
+            .nlargest(n=10, columns=['Total'])
+        )
         file_name = self.portfolio_config['portfolio_prefix'] + \
             '_' + 'top_ten.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
 
     def _tranform_bottom_ten(self) -> None:
-        df = self.tables_dict['factors_top_bottom_by_factor']['transform']['df']
-        result_df = tu.top_bottom(df, 'FYTD Bottom 10').nsmallest(
-            n=10, columns=['Total'])
+        df: pd.DataFrame = self.tables_dict['factors_top_bottom_by_factor']['transform']['df']
+        result_df = (
+            df
+            .pipe(tu.top_bottom, 'FYTD Top 10')
+            .nlargest(n=10, columns=['Total'])
+        )
         file_name = self.portfolio_config['portfolio_prefix'] + \
             '_' + 'bottom_ten.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})

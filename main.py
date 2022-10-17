@@ -6,7 +6,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-def main():
+def loop_portfolios():
     code_folder = p.Path(__file__).parents[0]
     json_dir = code_folder / "portfolios.json"
 
@@ -33,6 +33,10 @@ def main():
         print(f'finished downloading source data for {portfolio_name}')
         portfolio.download_transform_dfs()
         print(f'finished downloading target data for {portfolio_name}')
+
+
+def main():
+    loop_portfolios()
 
 
 if __name__ == "__main__":
