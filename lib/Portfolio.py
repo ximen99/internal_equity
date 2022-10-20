@@ -49,7 +49,8 @@ class Portfolio:
 
     def _transform_facs_final(self) -> None:
         df = self.tables_dict['facs']['detail']['df']
-        file_dir = self.workingDir / self.time_series_folder / 'FaCS Global Thematic.xlsx'
+        file_dir = self.workingDir / self.time_series_folder / \
+            self.portfolio_config['time_series']
         result_df = tu.add_time_series(df, self.date, file_dir)
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
             'facs_final.csv'
@@ -80,6 +81,7 @@ class Portfolio:
 
     def _transform_factor_risk_single(self) -> None:
         result_df = self.tables_dict['factors_risk']['detail']['df'].iloc[-1]
+        result_df.name = 'Contribution'
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
             'factors_risk_single.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
@@ -99,7 +101,8 @@ class Portfolio:
     def _transform_industry_attribution(self) -> None:
         factor_df = self.tables_dict['industry_factor']['detail']['df']
         risk_df = self.tables_dict['industry_risk']['detail']['df']
-        result_df = tu.industry_attribution(factor_df, risk_df)
+        result_df = tu.factor_attribution(
+            factor_df, risk_df, 'GICS Sector', '/Industry')
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
             'industry_attribution.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
@@ -107,9 +110,19 @@ class Portfolio:
     def _transform_style_attribution(self) -> None:
         factor_df = self.tables_dict['style_factor']['detail']['df']
         risk_df = self.tables_dict['style_risk']['detail']['df']
-        result_df = tu.style_attribution(factor_df, risk_df)
+        result_df = tu.factor_attribution(
+            factor_df, risk_df, 'Factor', '/Risk Indices')
         file_name = self.portfolio_config['portfolio_prefix'] + \
             '_' + 'style_attribution.csv'
+        self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
+
+    def _transform_country_attribution(self) -> None:
+        factor_df = self.tables_dict['country_factor']['detail']['df']
+        risk_df = self.tables_dict['country_risk']['detail']['df']
+        result_df = tu.factor_attribution(
+            factor_df, risk_df, 'Country', '/Country')
+        file_name = self.portfolio_config['portfolio_prefix'] + \
+            '_' + 'country_attribution.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
 
     def _transform_specific(self) -> None:
@@ -130,9 +143,9 @@ class Portfolio:
             '_' + 'stock_selection.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
 
-    def _transform_attribution_matrix(self) -> None:
+    def _transform_attribution_matrix(self, attrubution_matrix) -> None:
         df = self.tables_dict['specific']['detail']['df']
-        result_df = tu.attribution_matrix(df)
+        result_df = attrubution_matrix(df)
         file_name = self.portfolio_config['portfolio_prefix'] + \
             '_' + 'attribution_matrix.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
@@ -179,9 +192,18 @@ class Portfolio:
         self._transform_risk_summary()
         self._transform_industry_attribution()
         self._transform_style_attribution()
+
+        if 'gl_' in self.portfolio_config['portfolio_prefix']:
+            self._transform_country_attribution()
+
         self._transform_specific()
         self._transform_stock_selection()
-        self._transform_attribution_matrix()
+
+        if self.portfolio_config['portfolio_prefix'] in ['ca_ae', 'ca_sc', 'ca_aq']:
+            self._transform_attribution_matrix(tu.attribution_matrix_canadian)
+        else:
+            self._transform_attribution_matrix(tu.attribution_matrix)
+
         self._transform_top_bottom()
         self._transform_top_ten()
         self._tranform_bottom_ten()

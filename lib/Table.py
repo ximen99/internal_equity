@@ -71,19 +71,13 @@ class Table:
     def _read_csv(self, start_row=None, end_row=None, start_col=None, end_col=None, **kwargs) -> pd.DataFrame:
         return pd.read_csv(self.file_dir,  on_bad_lines='skip', **kwargs).iloc[start_row:end_row, start_col:end_col]
 
-    def _determine_prefix(self, table_type: str) -> str:
-        if table_type == 'detail':
-            return self.portfolio_prefix
-        if table_type == 'summary':
-            return 'as_'+self.portfolio_prefix
-
     def _load_df_dict(self) -> None:
         sub_tables_config = self.table_config['sub_tables']
 
         for sub_table, sub_table_config in sub_tables_config.items():
-            sub_table_prefix = self._determine_prefix(sub_table)
+            sub_table_suffix = '' if sub_table == 'detail' else "_" + sub_table
             self.table_dict[sub_table] = {'df': self._read_csv(**sub_table_config),
-                                          'save_to_name': sub_table_prefix + "_" + self.table_name + ".csv"
+                                          'save_to_name': self.portfolio_prefix + "_" + self.table_name + sub_table_suffix + ".csv"
                                           }
 
     def load(self) -> None:

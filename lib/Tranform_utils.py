@@ -35,7 +35,8 @@ def time_series(file_dir: p.Path, dataframe_to_append: pd.DataFrame) -> pd.DataF
     )
     new_dates = dataframe_to_append['Date'].tolist()
     if time_series_df['Date'].isin(new_dates).any() == False:
-        appended_data = time_series_df.append(dataframe_to_append)
+        appended_data = time_series_df.append(
+            dataframe_to_append).set_index(['Date'])
     else:
         appended_data = (
             time_series_df
@@ -56,12 +57,13 @@ def remove_percentages(data: pd.DataFrame, column_start: str = None) -> pd.DataF
 
 
 def return_decomposition(data: pd.DataFrame) -> pd.DataFrame:
-    return (
+    result_df = (
         data
-        .pipe(remove_substring_from_columns, [' Period Net Contribution ', ' Period Cumulative Net Contribution ', 'Return', '% ', '(', ')'])
-        .pipe(remove_percentages, 'Active')
+        .pipe(remove_substring_from_columns, [' Net Contribution ', 'Return', '% ', '(', ')'])
         .pipe(lambda df_: df_.set_index(df_.columns[0]))
+        .pipe(remove_percentages)
     )
+    return result_df
 
 
 def risk_decomposition(data: pd.DataFrame) -> pd.DataFrame:
@@ -85,46 +87,24 @@ def replace_column_names(data: pd.DataFrame, source_of_return: str) -> pd.DataFr
     return data
 
 
-def industry_attribution(factor_data: pd.DataFrame, risk_data: pd.DataFrame) -> pd.DataFrame:
+def factor_attribution(factor_data: pd.DataFrame, risk_data: pd.DataFrame, col_name: str, parent_node: str) -> pd.DataFrame:
     factor_data_cleaned = (
         factor_data
         .pipe(remove_substring_from_columns, ['Net', 'Cumulative', '[', '] '])
         .pipe(remove_percentages, 'Total Contribution')
-        .pipe(replace_column_names, 'Industry (Factors), MSCI')
-        .query("`Parent Node` == '/Industry'")
+        .pipe(replace_column_names, col_name)
+        .query(f"`Parent Node` == '{parent_node}'")
     )
     risk_data_cleaned = (
         risk_data
         .pipe(remove_percentages, 'Active Risk Contribution')
-        .assign(**{'Industry (Factors), MSCI': lambda df_: df_.Factor})
+        .assign(**{col_name: lambda df_: df_.Factor})
     )
     final = (
         pd.merge(factor_data_cleaned, risk_data_cleaned, on=[
-            'Industry (Factors), MSCI', 'Parent Node'], how='left')
-        .filter(['Industry (Factors), MSCI', 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution'], axis=1)
-        .set_index('Industry (Factors), MSCI')
-    )
-    return final
-
-
-def style_attribution(factor_data: pd.DataFrame, risk_data: pd.DataFrame) -> pd.DataFrame:
-    factor_data_cleaned = (
-        factor_data
-        .pipe(remove_substring_from_columns, ['Net', 'Cumulative', '[', '] '])
-        .pipe(remove_percentages, 'Total Contribution')
-        .pipe(replace_column_names, 'Style (Factors), MSCI')
-        .query("`Parent Node` == '/Risk Indices'")
-    )
-    risk_data_cleaned = (
-        risk_data
-        .pipe(remove_percentages, 'Active Risk Contribution')
-        .assign(**{'Style (Factors), MSCI': lambda df_: df_.Factor})
-    )
-    final = (
-        pd.merge(factor_data_cleaned, risk_data_cleaned,
-                 on=['Style (Factors), MSCI', 'Parent Node'], how='left')
-        .filter(['Style (Factors), MSCI', 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution'], axis=1)
-        .set_index('Style (Factors), MSCI')
+            col_name, 'Parent Node'], how='left')
+        .filter([col_name, 'Average Active Exposure (Z-Sc)', 'Active Return Contribution', 'Active Risk Contribution'], axis=1)
+        .set_index(col_name)
     )
     return final
 

@@ -2,6 +2,7 @@
   "gl_th": {
     "portfolio_code": "ME178AIN",
     "portfolio_prefix": "gl_th",
+    "time_series": "FaCS Global Thematic.xlsx",
     "tables": {
       "port_sum": {
         "settings": "A S 2 FYTD",
@@ -14,80 +15,84 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14, "start_row": 4 }
         }
       },
       "factors_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Factor risk",
         "sub_tables": {
-          "detail": { "skiprows": 13, "start_row": 4 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13, "start_row": 4 }
         }
       },
       "factors_return_attribution": {
         "settings": "FACTOR FYTD",
         "filename": "Factor Return Attribution",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "industry_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Industry Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14 }
         }
       },
       "industry_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Industry Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "style_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Style Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "style_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Style Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "country_factor": {
+        "settings": "FACTOR FYTD",
+        "filename": "Country Factor",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
+        }
+      },
+      "country_risk": {
+        "settings": "FACTOR FYTD",
+        "filename": "Country Risk",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       },
       "specific": {
         "settings": "FACTOR FYTD",
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "factors_top_bottom_by_factor": {
         "settings": "A S no cons FYTD",
         "filename": "Top Bottom Names by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "facs": {
         "folder_name": "ME178_173 NLT",
         "filename": "ME178AIN_Facs exposure vs BMK",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       }
     }
@@ -95,6 +100,7 @@
   "ca_ae": {
     "portfolio_code": "AC5230IN",
     "portfolio_prefix": "ca_ae",
+    "time_series": "FaCS Canadian Active.xlsx",
     "tables": {
       "port_sum": {
         "trailing_name": "CE6105IN",
@@ -109,8 +115,7 @@
         "settings": "A S FYTD",
         "filename": "Return Decomp Chart",
         "sub_tables": {
-          "detail": { "skiprows": 15 },
-          "summary": { "nrows": 15 }
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_attribution": {
@@ -118,8 +123,7 @@
         "settings": "A S FYTD",
         "filename": "A-S by Industry",
         "sub_tables": {
-          "detail": { "skiprows": 12 },
-          "summary": { "nrows": 12 }
+          "detail": { "skiprows": 12 }
         }
       },
       "factors_risk": {
@@ -127,8 +131,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Factor risk",
         "sub_tables": {
-          "detail": { "skiprows": 13, "start_row": 4 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13, "start_row": 4 }
         }
       },
       "factors_return_attribution": {
@@ -136,8 +139,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Factor Return Attribution",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "factors_return_decomp_by_factor": {
@@ -145,8 +147,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13, "end_col": 8 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "industry_factor": {
@@ -154,8 +155,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Industry Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14 }
         }
       },
       "industry_risk": {
@@ -163,8 +163,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Industry Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "style_factor": {
@@ -172,8 +171,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Style Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "style_risk": {
@@ -181,8 +179,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Style Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "specific": {
@@ -190,8 +187,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "factors_top_bottom_by_factor": {
@@ -199,16 +195,14 @@
         "settings": "A S no cons FYTD",
         "filename": "Top Bottom Names by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "facs": {
         "folder_name": "AC5230IN_CE6105IN_FACS Vs BMK",
         "filename": "AC5230IN_Facs exposure vs BMK",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       }
     }
@@ -216,6 +210,7 @@
   "ca_sc": {
     "portfolio_code": "AC053EIN",
     "portfolio_prefix": "ca_sc",
+    "time_series": "FaCS Canadian Small Caps.xlsx",
     "tables": {
       "port_sum": {
         "settings": "A S FYTD",
@@ -228,96 +223,84 @@
         "settings": "A S FYTD",
         "filename": "Return Decomp Chart",
         "sub_tables": {
-          "detail": { "skiprows": 15 },
-          "summary": { "nrows": 15 }
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_attribution": {
         "settings": "A S FYTD",
         "filename": "A-S by Industry",
         "sub_tables": {
-          "detail": { "skiprows": 12 },
-          "summary": { "nrows": 12 }
+          "detail": { "skiprows": 12 }
         }
       },
       "factors_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Factor risk",
         "sub_tables": {
-          "detail": { "skiprows": 13, "start_row": 4 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13, "start_row": 4 }
         }
       },
       "industry_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Industry Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14 }
         }
       },
       "industry_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Industry Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "style_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Style Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "style_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Style Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_return_attribution": {
         "settings": "FACTOR FYTD",
         "filename": "Factor Return Attribution",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "factors_return_decomp_by_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14, "start_row": 4 }
         }
       },
       "specific": {
         "settings": "FACTOR FYTD",
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "factors_top_bottom_by_factor": {
         "settings": "A S no cons FYTD",
         "filename": "Top Bottom Names by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "facs": {
         "folder_name": "AC053EIN Facs Vs BMK",
         "filename": "AC053EIN_Facs exposure vs BMK",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       }
     }
@@ -325,6 +308,7 @@
   "ca_aq": {
     "portfolio_code": "CE6105IN",
     "portfolio_prefix": "ca_aq",
+    "time_series": "FaCS Canadian Quantitative.xlsx",
     "tables": {
       "port_sum": {
         "prefix_name": "AC5230IN",
@@ -339,8 +323,7 @@
         "settings": "A S FYTD",
         "filename": "Return Decomp Chart",
         "sub_tables": {
-          "detail": { "skiprows": 15 },
-          "summary": { "nrows": 15 }
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_attribution": {
@@ -348,8 +331,7 @@
         "settings": "A S FYTD",
         "filename": "A-S by Industry",
         "sub_tables": {
-          "detail": { "skiprows": 12 },
-          "summary": { "nrows": 12 }
+          "detail": { "skiprows": 12 }
         }
       },
       "factors_risk": {
@@ -357,8 +339,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Factor risk",
         "sub_tables": {
-          "detail": { "skiprows": 13, "start_row": 4 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13, "start_row": 4 }
         }
       },
       "industry_factor": {
@@ -366,8 +347,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Industry Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14 }
         }
       },
       "industry_risk": {
@@ -375,8 +355,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Industry Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "style_factor": {
@@ -384,8 +363,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Style Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "style_risk": {
@@ -393,8 +371,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Style Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_return_attribution": {
@@ -402,8 +379,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Factor Return Attribution",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "factors_return_decomp_by_factor": {
@@ -411,8 +387,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14, "start_row": 4 }
         }
       },
       "specific": {
@@ -420,8 +395,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "factors_top_bottom_by_factor": {
@@ -429,16 +403,14 @@
         "settings": "A S no cons FYTD",
         "filename": "Top Bottom Names by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "facs": {
         "folder_name": "AC5230IN_CE6105IN_FACS Vs BMK",
         "filename": "CE6105IN_Facs exposure vs BMK",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       }
     }
@@ -446,6 +418,7 @@
   "us_sc": {
     "portfolio_code": "AU063HIN",
     "portfolio_prefix": "us_sc",
+    "time_series": "FaCS US Small Caps.xlsx",
     "tables": {
       "port_sum": {
         "settings": "A S FYTD",
@@ -458,96 +431,84 @@
         "settings": "A S FYTD",
         "filename": "Return Decomp Chart",
         "sub_tables": {
-          "detail": { "skiprows": 15 },
-          "summary": { "nrows": 15 }
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_attribution": {
         "settings": "A S FYTD",
         "filename": "A-S by Industry",
         "sub_tables": {
-          "detail": { "skiprows": 12 },
-          "summary": { "nrows": 12 }
+          "detail": { "skiprows": 12 }
         }
       },
       "factors_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Factor risk",
         "sub_tables": {
-          "detail": { "skiprows": 13, "start_row": 4 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13, "start_row": 4 }
         }
       },
       "industry_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Industry Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14 }
         }
       },
       "industry_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Industry Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "style_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Style Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "style_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Style Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_return_attribution": {
         "settings": "FACTOR FYTD",
         "filename": "Factor Return Attribution",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "factors_return_decomp_by_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14, "start_row": 4 }
         }
       },
       "specific": {
         "settings": "FACTOR FYTD",
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "factors_top_bottom_by_factor": {
         "settings": "A S no cons FYTD",
         "filename": "Top Bottom Names by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "facs": {
         "folder_name": "AU063HIN_RUSSEL",
         "filename": "AU063HIN_Facs exposure vs BMK",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       }
     }
@@ -555,6 +516,7 @@
   "gl_aq": {
     "portfolio_code": "ME176AIN",
     "portfolio_prefix": "gl_aq",
+    "time_series": "FaCS Global Quantitative.xlsx",
     "tables": {
       "port_sum": {
         "filename_prefix": "DERIVATIVES",
@@ -569,8 +531,7 @@
         "settings": "A S FYTD",
         "filename": "Return Decomp Chart",
         "sub_tables": {
-          "detail": { "skiprows": 15 },
-          "summary": { "nrows": 15 }
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_attribution": {
@@ -578,8 +539,7 @@
         "settings": "A S 2 FYTD",
         "filename": "A-S by Industry",
         "sub_tables": {
-          "detail": { "skiprows": 12 },
-          "summary": { "nrows": 12 }
+          "detail": { "skiprows": 12 }
         }
       },
       "factors_risk": {
@@ -587,8 +547,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Factor risk",
         "sub_tables": {
-          "detail": { "skiprows": 13, "start_row": 4 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13, "start_row": 4 }
         }
       },
       "industry_factor": {
@@ -596,8 +555,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Industry Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14 }
         }
       },
       "industry_risk": {
@@ -605,8 +563,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Industry Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "style_factor": {
@@ -614,8 +571,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Style Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "style_risk": {
@@ -623,8 +579,23 @@
         "settings": "FACTOR FYTD",
         "filename": "Style Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "country_factor": {
+        "filename_prefix": "DERIVATIVES",
+        "settings": "FACTOR FYTD",
+        "filename": "Country Factor",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
+        }
+      },
+      "country_risk": {
+        "filename_prefix": "DERIVATIVES",
+        "settings": "FACTOR FYTD",
+        "filename": "Country Risk",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_return_attribution": {
@@ -632,8 +603,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Factor Return Attribution",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "factors_return_decomp_by_factor": {
@@ -641,8 +611,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14, "start_row": 4 }
         }
       },
       "specific": {
@@ -650,8 +619,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "factors_top_bottom_by_factor": {
@@ -659,16 +627,14 @@
         "settings": "A S Top Bottom FYTD",
         "filename": "Top Bottom Names by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "facs": {
         "folder_name": "ME176_179 LT",
         "filename": "ME176AIN_DERIVATIVES_Facs exposure vs BMK",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       }
     }
@@ -676,6 +642,7 @@
   "gl_es": {
     "portfolio_code": "ME179AIN",
     "portfolio_prefix": "gl_es",
+    "time_series": "FaCS Global Quantitative ESG.xlsx",
     "tables": {
       "port_sum": {
         "filename_prefix": "DERIVATIVES",
@@ -690,8 +657,7 @@
         "settings": "A S FYTD",
         "filename": "Return Decomp Chart",
         "sub_tables": {
-          "detail": { "skiprows": 15 },
-          "summary": { "nrows": 15 }
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_attribution": {
@@ -699,8 +665,7 @@
         "settings": "A S 2 FYTD",
         "filename": "A-S by Industry",
         "sub_tables": {
-          "detail": { "skiprows": 12 },
-          "summary": { "nrows": 12 }
+          "detail": { "skiprows": 12 }
         }
       },
       "factors_risk": {
@@ -708,8 +673,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Factor risk",
         "sub_tables": {
-          "detail": { "skiprows": 13, "start_row": 4 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13, "start_row": 4 }
         }
       },
       "industry_factor": {
@@ -717,8 +681,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Industry Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14 }
         }
       },
       "industry_risk": {
@@ -726,8 +689,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Industry Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "style_factor": {
@@ -735,8 +697,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Style Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "style_risk": {
@@ -744,8 +705,23 @@
         "settings": "FACTOR FYTD",
         "filename": "Style Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "country_factor": {
+        "filename_prefix": "DERIVATIVES",
+        "settings": "FACTOR FYTD",
+        "filename": "Country Factor",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
+        }
+      },
+      "country_risk": {
+        "filename_prefix": "DERIVATIVES",
+        "settings": "FACTOR FYTD",
+        "filename": "Country Risk",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_return_attribution": {
@@ -753,8 +729,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Factor Return Attribution",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "factors_return_decomp_by_factor": {
@@ -762,8 +737,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14, "start_row": 4 }
         }
       },
       "specific": {
@@ -771,8 +745,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "factors_top_bottom_by_factor": {
@@ -780,16 +753,14 @@
         "settings": "A S Top Bottom FYTD",
         "filename": "Top Bottom Names by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "facs": {
         "folder_name": "ME176_179 LT",
         "filename": "ME179AIN_DERIVATIVES_Facs exposure vs BMK",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       }
     }
@@ -797,6 +768,7 @@
   "gl_fu": {
     "portfolio_code": "ME173JIN",
     "portfolio_prefix": "gl_fu",
+    "time_series": "FaCS Global Fundamental.xlsx",
     "tables": {
       "port_sum": {
         "settings": "A S 2 FYTD",
@@ -809,96 +781,98 @@
         "settings": "A S FYTD",
         "filename": "Return Decomp Chart",
         "sub_tables": {
-          "detail": { "skiprows": 15 },
-          "summary": { "nrows": 15 }
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_attribution": {
         "settings": "A S 2 FYTD",
         "filename": "A-S by Industry",
         "sub_tables": {
-          "detail": { "skiprows": 12 },
-          "summary": { "nrows": 12 }
+          "detail": { "skiprows": 12 }
         }
       },
       "factors_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Factor risk",
         "sub_tables": {
-          "detail": { "skiprows": 13, "start_row": 4 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13, "start_row": 4 }
         }
       },
       "industry_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Industry Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14 }
         }
       },
       "industry_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Industry Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "style_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Style Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "style_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Style Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "country_factor": {
+        "settings": "FACTOR FYTD",
+        "filename": "Country Factor",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
+        }
+      },
+      "country_risk": {
+        "settings": "FACTOR FYTD",
+        "filename": "Country Risk",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_return_attribution": {
         "settings": "FACTOR FYTD",
         "filename": "Factor Return Attribution",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "factors_return_decomp_by_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14, "start_row": 4 }
         }
       },
       "specific": {
         "settings": "FACTOR FYTD",
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "factors_top_bottom_by_factor": {
         "settings": "A S no cons FYTD",
         "filename": "Top Bottom Names by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "facs": {
         "folder_name": "ME178_173 NLT",
         "filename": "ME173JIN_Facs exposure vs BMK",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       }
     }
@@ -906,6 +880,7 @@
   "gl_em": {
     "portfolio_code": "ME170YIN",
     "portfolio_prefix": "gl_em",
+    "time_series": "FaCS Global Emerging Markets.xlsx",
     "tables": {
       "port_sum": {
         "settings": "A S 2 FYTD",
@@ -918,96 +893,98 @@
         "settings": "A S FYTD",
         "filename": "Return Decomp Chart",
         "sub_tables": {
-          "detail": { "skiprows": 15 },
-          "summary": { "nrows": 15 }
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_attribution": {
         "settings": "A S FYTD",
         "filename": "A-S by Industry",
         "sub_tables": {
-          "detail": { "skiprows": 12 },
-          "summary": { "nrows": 12 }
+          "detail": { "skiprows": 12 }
         }
       },
       "factors_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Factor risk",
         "sub_tables": {
-          "detail": { "skiprows": 13, "start_row": 4 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13, "start_row": 4 }
         }
       },
       "industry_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Industry Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14 }
         }
       },
       "industry_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Industry Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       },
       "style_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Style Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "style_risk": {
         "settings": "FACTOR FYTD",
         "filename": "Style Risk",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "country_factor": {
+        "settings": "FACTOR FYTD",
+        "filename": "Country Factor",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
+        }
+      },
+      "country_risk": {
+        "settings": "FACTOR FYTD",
+        "filename": "Country Risk",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_return_attribution": {
         "settings": "FACTOR FYTD",
         "filename": "Factor Return Attribution",
         "sub_tables": {
-          "detail": { "skiprows": 13 },
-          "summary": { "nrows": 13 }
+          "detail": { "skiprows": 13 }
         }
       },
       "factors_return_decomp_by_factor": {
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 14, "start_row": 4, "end_col": 8 },
-          "summary": { "nrows": 14 }
+          "detail": { "skiprows": 14, "start_row": 4 }
         }
       },
       "specific": {
         "settings": "FACTOR FYTD",
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "factors_top_bottom_by_factor": {
         "settings": "A S no cons FYTD",
         "filename": "Top Bottom Names by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 10 },
-          "summary": { "nrows": 10 }
+          "detail": { "skiprows": 10 }
         }
       },
       "facs": {
         "folder_name": "ME170YIN FACS vs BMK",
         "filename": "ME170YIN_Facs exposure vs BMK",
         "sub_tables": {
-          "detail": { "skiprows": 11 },
-          "summary": { "nrows": 11 }
+          "detail": { "skiprows": 11 }
         }
       }
     }

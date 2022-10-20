@@ -19,12 +19,8 @@ def loop_portfolios():
     time_series_folder = 'Time-series Data'
 
     for portfolio_name in portfolio_data:
-        if portfolio_name in ['ca_ae', 'ca_sc', 'ca_aq']:
-            portfolio = lib.Portfolio_CA(
-                source_folder, time_series_folder, date, portfolio_data[portfolio_name])
-        else:
-            portfolio = lib.Portfolio(
-                source_folder, time_series_folder, date, portfolio_data[portfolio_name])
+        portfolio = lib.Portfolio(
+            source_folder, time_series_folder, date, portfolio_data[portfolio_name])
         portfolio.load()
         print(f'finished loading of {portfolio_name}')
         portfolio.transform()
