@@ -66,7 +66,16 @@ class Portfolio:
 
     def _transform_return_decomp_by_factor_single(self) -> None:
         df = self.tables_dict['factors_return_decomp_by_factor']['detail']['df']
-        result_df = df.iloc[-1]
+        result_df = (
+            df
+            .iloc[-1]
+            .to_frame()
+            .query("index.str.contains('Cumulative')", engine="python")
+            .T
+            .pipe(tu.remove_substring_from_columns, [' Period Cumulative'])
+            .T
+            .squeeze()
+        )
         result_df.name = 'Contribution'
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
             'factors_return_decomp_by_factor_single.csv'
