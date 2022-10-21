@@ -70,9 +70,9 @@ class Portfolio:
             df
             .iloc[-1]
             .to_frame()
-            .query("index.str.contains('Cumulative')", engine="python")
+            .filter(regex='.*Period$', axis=0)
             .T
-            .pipe(tu.remove_substring_from_columns, [' Period Cumulative'])
+            .pipe(tu.remove_substring_from_columns, [' Period'])
             .T
             .squeeze()
         )

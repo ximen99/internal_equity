@@ -147,7 +147,7 @@
         "settings": "FACTOR FYTD",
         "filename": "Return Decomp by Factor",
         "sub_tables": {
-          "detail": { "skiprows": 13 }
+          "detail": { "skiprows": 14, "start_row": 4 }
         }
       },
       "industry_factor": {
@@ -893,14 +893,14 @@
         "settings": "A S FYTD",
         "filename": "Return Decomp Chart",
         "sub_tables": {
-          "detail": { "skiprows": 15 }
+          "detail": { "skiprows": 16 }
         }
       },
       "as_return_attribution": {
         "settings": "A S FYTD",
         "filename": "A-S by Industry",
         "sub_tables": {
-          "detail": { "skiprows": 12 }
+          "detail": { "skiprows": 13 }
         }
       },
       "factors_risk": {

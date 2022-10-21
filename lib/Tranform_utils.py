@@ -57,11 +57,31 @@ def remove_percentages(data: pd.DataFrame, column_start: str = None) -> pd.DataF
 
 
 def return_decomposition(data: pd.DataFrame) -> pd.DataFrame:
+    def restructure(df: pd.DataFrame) -> pd.DataFrame:
+        df_cumulative = (
+            df
+            .filter(regex='.*Cumulative$', axis=1)
+            .pipe(remove_substring_from_columns, [' Period Cumulative'])
+        )
+
+        df_period = (
+            df
+            .filter(regex='.*Period$', axis=1)
+            .pipe(remove_substring_from_columns, [' Period'])
+            .pipe(lambda df_: pd.concat([df_, pd.Series(data=df_cumulative.iloc[-1].values, name='Total FYTD', index=df_cumulative.columns).to_frame().T], axis=0))
+            .add_suffix(' Period')
+        )
+        cumulative_active = df_cumulative['Active'].to_list()
+        df_period.insert(0, "Active Period Cumulative",
+                         cumulative_active + [cumulative_active[-1]])
+        return df_period
+
     result_df = (
         data
         .pipe(remove_substring_from_columns, [' Net Contribution ', 'Return', '% ', '(', ')'])
         .pipe(lambda df_: df_.set_index(df_.columns[0]))
         .pipe(remove_percentages)
+        .pipe(restructure)
     )
     return result_df
 
