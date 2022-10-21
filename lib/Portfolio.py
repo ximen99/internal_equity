@@ -185,8 +185,8 @@ class Portfolio:
         df: pd.DataFrame = self.tables_dict['factors_top_bottom_by_factor']['transform']['df']
         result_df = (
             df
-            .pipe(tu.top_bottom, 'FYTD Top 10')
-            .nlargest(n=10, columns=['Total'])
+            .pipe(tu.top_bottom, 'FYTD Bottom 10')
+            .nsmallest(n=10, columns=['Total'])
         )
         file_name = self.portfolio_config['portfolio_prefix'] + \
             '_' + 'bottom_ten.csv'
