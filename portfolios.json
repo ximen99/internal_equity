@@ -62,14 +62,14 @@
       },
       "country_factor": {
         "settings": "FACTOR FYTD",
-        "filename": "Country Factor",
+        "filename": "Country Factor Perf",
         "sub_tables": {
           "detail": { "skiprows": 14 }
         }
       },
       "country_risk": {
         "settings": "FACTOR FYTD",
-        "filename": "Country Risk",
+        "filename": "Country Factor Risk",
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
@@ -585,7 +585,7 @@
       "country_factor": {
         "filename_prefix": "DERIVATIVES",
         "settings": "FACTOR FYTD",
-        "filename": "Country Factor",
+        "filename": "Country Factor Perf",
         "sub_tables": {
           "detail": { "skiprows": 14 }
         }
@@ -593,7 +593,7 @@
       "country_risk": {
         "filename_prefix": "DERIVATIVES",
         "settings": "FACTOR FYTD",
-        "filename": "Country Risk",
+        "filename": "Country Factor Risk",
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
@@ -711,7 +711,7 @@
       "country_factor": {
         "filename_prefix": "DERIVATIVES",
         "settings": "FACTOR FYTD",
-        "filename": "Country Factor",
+        "filename": "Country Factor Perf",
         "sub_tables": {
           "detail": { "skiprows": 14 }
         }
@@ -719,7 +719,7 @@
       "country_risk": {
         "filename_prefix": "DERIVATIVES",
         "settings": "FACTOR FYTD",
-        "filename": "Country Risk",
+        "filename": "Country Factor Risk",
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
@@ -828,14 +828,14 @@
       },
       "country_factor": {
         "settings": "FACTOR FYTD",
-        "filename": "Country Factor",
+        "filename": "Country Factor Perf",
         "sub_tables": {
           "detail": { "skiprows": 14 }
         }
       },
       "country_risk": {
         "settings": "FACTOR FYTD",
-        "filename": "Country Risk",
+        "filename": "Country Factor Risk",
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
@@ -940,14 +940,14 @@
       },
       "country_factor": {
         "settings": "FACTOR FYTD",
-        "filename": "Country Factor",
+        "filename": "Country Factor Perf",
         "sub_tables": {
           "detail": { "skiprows": 14 }
         }
       },
       "country_risk": {
         "settings": "FACTOR FYTD",
-        "filename": "Country Risk",
+        "filename": "Country Factor Risk",
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
