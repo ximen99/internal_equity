@@ -230,6 +230,17 @@ class Portfolio:
 
         return result_df
 
+    def _transform_sector_positioning(self) -> None:
+        df: pd.DataFrame = self.tables_dict['sector_positioning']['detail']['df']
+        result_df = (
+            df
+            .set_index('Name')
+            .pipe(tu.remove_percentages)
+        )
+        self.tables_dict['sector_positioning']['detail']['df'] = result_df
+        self.transform_dfs.append(
+            self.tables_dict['sector_positioning']['detail'])
+
     def transform(self) -> None:
         self._transform_facs_final()
         self._transform_return_decomp_by_factor()
@@ -254,8 +265,11 @@ class Portfolio:
         self._transform_top_bottom()
         self._transform_top_ten()
         self._transform_bottom_ten()
+        self._transform_sector_positioning()
         # load port_sum table to output tables
-        self.transform_dfs.append(self.tables_dict['port_sum']['detail'])
+        self.transform_dfs.append(
+            self.tables_dict['sector_positioning']['detail'])
+
         self.compile_dict['fill_in'] = pd.concat(
             [self.compile_dict['fill_in'], self._transform_fill_in()], ignore_index=True)
 

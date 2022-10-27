@@ -89,6 +89,13 @@
           "detail": { "skiprows": 10 }
         }
       },
+      "sector_positioning": {
+        "settings": "FACTOR FYTD",
+        "filename": "Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
       "factors_top_bottom_by_factor": {
         "settings": "A S no cons FYTD",
         "filename": "Top Bottom Names by Factor",
@@ -207,6 +214,14 @@
           "detail": { "skiprows": 10 }
         }
       },
+      "sector_positioning": {
+        "trailing_name": "CE6105IN",
+        "settings": "FACTOR FYTD LT",
+        "filename": "Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
       "factors_top_bottom_by_factor": {
         "trailing_name": "CE6105IN",
         "settings": "A S no cons FYTD",
@@ -312,6 +327,13 @@
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
           "detail": { "skiprows": 10 }
+        }
+      },
+      "sector_positioning": {
+        "settings": "FACTOR FYTD",
+        "filename": "Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_top_bottom_by_factor": {
@@ -432,6 +454,14 @@
           "detail": { "skiprows": 10 }
         }
       },
+      "sector_positioning": {
+        "prefix_name": "AC5230IN",
+        "settings": "FACTOR FYTD LT",
+        "filename": "Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
       "factors_top_bottom_by_factor": {
         "prefix_name": "AC5230IN",
         "settings": "A S no cons FYTD",
@@ -537,6 +567,13 @@
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
           "detail": { "skiprows": 10 }
+        }
+      },
+      "sector_positioning": {
+        "settings": "FACTOR FYTD LT",
+        "filename": "Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_top_bottom_by_factor": {
@@ -671,6 +708,14 @@
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
           "detail": { "skiprows": 10 }
+        }
+      },
+      "sector_positioning": {
+        "filename_prefix": "DERIVATIVES",
+        "settings": "FACTOR FYTD",
+        "filename": "Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_top_bottom_by_factor": {
@@ -808,6 +853,14 @@
           "detail": { "skiprows": 10 }
         }
       },
+      "sector_positioning": {
+        "filename_prefix": "DERIVATIVES",
+        "settings": "FACTOR FYTD",
+        "filename": "Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
       "factors_top_bottom_by_factor": {
         "filename_prefix": "DERIVATIVES",
         "settings": "A S Top Bottom FYTD",
@@ -929,6 +982,13 @@
           "detail": { "skiprows": 10 }
         }
       },
+      "sector_positioning": {
+        "settings": "FACTOR FYTD",
+        "filename": "Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
       "factors_top_bottom_by_factor": {
         "settings": "A S no cons FYTD",
         "filename": "Top Bottom Names by Factor",
@@ -1047,6 +1107,13 @@
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
           "detail": { "skiprows": 10 }
+        }
+      },
+      "sector_positioning": {
+        "settings": "FACTOR FYTD",
+        "filename": "Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       },
       "factors_top_bottom_by_factor": {
