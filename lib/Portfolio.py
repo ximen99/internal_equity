@@ -5,7 +5,7 @@ from . import Tranform_utils as tu
 
 
 class Portfolio:
-    def __init__(self, sourceDir: str, time_series_folder: str, date: str, portfolio_config: dict) -> None:
+    def __init__(self, sourceDir: str, time_series_folder: str, save_to_folder: str, date: str, portfolio_config: dict, compile_dict: dict) -> None:
         self.workingDir = p.Path(__file__).parents[2]
         self.portfolio_config = portfolio_config
         self.sourceDir = sourceDir
@@ -14,10 +14,10 @@ class Portfolio:
         self.time_series_folder = time_series_folder
         self.check_dfs = []
         self.transform_dfs = []
-        self.save_to_folder = 'Python Data'
         # create save to folder
-        save_to_dir = self.workingDir / self.save_to_folder
-        save_to_dir.mkdir(exist_ok=True)
+        self.save_to_dir = self.workingDir / save_to_folder
+        self.save_to_dir.mkdir(exist_ok=True)
+        self.compile_dict = compile_dict
 
     def _load_single_table(self, table_name: str) -> None:
         portfolio_code = self.portfolio_config['portfolio_code']
@@ -181,7 +181,7 @@ class Portfolio:
             '_' + 'top_ten.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
 
-    def _tranform_bottom_ten(self) -> None:
+    def _transform_bottom_ten(self) -> None:
         df: pd.DataFrame = self.tables_dict['factors_top_bottom_by_factor']['transform']['df']
         result_df = (
             df
@@ -191,6 +191,44 @@ class Portfolio:
         file_name = self.portfolio_config['portfolio_prefix'] + \
             '_' + 'bottom_ten.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
+
+    def _transform_fill_in(self) -> pd.DataFrame:
+        dummy_row_name = '0'
+        result_df = pd.DataFrame()
+
+        result_df.loc[dummy_row_name,
+                      'Porfolio Name'] = self.portfolio_config['portfolio_name']
+
+        summary_df = (
+            self.tables_dict['port_sum']['detail']['df']
+            .set_index('Client Name:')
+        )
+        # add values to result df template
+        for r in ['Active Share', 'Active Risk', 'Predicted Beta']:
+            col_name = 'British Columbia Investment Management Corporation (bcIMC)'
+            val = summary_df.loc[r, col_name]
+            if r == 'Predicted Beta':
+                result_df.loc[dummy_row_name, r] = float(val)
+            else:
+                result_df.loc[dummy_row_name, r] = val
+
+        return_df = (
+            self.tables_dict['as_return_table']['detail']['df']
+            .set_index('Source of Return')
+            .pipe(tu.remove_substring_from_columns, ['Net', 'Cumulative', '[', '] ', 'Full Time-span'])
+        )
+        # add values to result df template
+        for r in ['Allocation', 'Selection', 'Currency']:
+            if r in return_df.index:
+                result_df.loc[dummy_row_name, r] = return_df.loc[r, 'Return']
+            else:
+                result_df.loc[dummy_row_name, r] = 0
+
+        result_df = tu.remove_percentages(result_df, 'Active Share')
+        result_df.loc[dummy_row_name,
+                      'Portfolio Code'] = self.portfolio_config['portfolio_code']
+
+        return result_df
 
     def transform(self) -> None:
         self._transform_facs_final()
@@ -215,14 +253,13 @@ class Portfolio:
 
         self._transform_top_bottom()
         self._transform_top_ten()
-        self._tranform_bottom_ten()
+        self._transform_bottom_ten()
         # load port_sum table to output tables
         self.transform_dfs.append(self.tables_dict['port_sum']['detail'])
+        self.compile_dict['fill_in'] = pd.concat(
+            [self.compile_dict['fill_in'], self._transform_fill_in()], ignore_index=True)
 
     def download_transform_dfs(self) -> None:
-        output_folder = 'Python Data'
         for df_dict in self.transform_dfs:
-            download_dir = self.workingDir / output_folder
-            download_dir.mkdir(exist_ok=True)
-            df_dir = download_dir / df_dict['save_to_name']
+            df_dir = self.save_to_dir / df_dict['save_to_name']
             df_dict['df'].to_csv(df_dir)

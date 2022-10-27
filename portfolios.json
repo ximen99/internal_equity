@@ -2,6 +2,7 @@
   "gl_th": {
     "portfolio_code": "ME178AIN",
     "portfolio_prefix": "gl_th",
+    "portfolio_name": "Global Thematic",
     "time_series": "FaCS Global Thematic.xlsx",
     "tables": {
       "port_sum": {
@@ -9,6 +10,13 @@
         "filename": "Portfolio Risk Summary",
         "sub_tables": {
           "detail": {}
+        }
+      },
+      "as_return_table": {
+        "settings": "A S FYTD",
+        "filename": "A-S Return Table",
+        "sub_tables": {
+          "detail": { "skiprows": 15 }
         }
       },
       "factors_return_decomp_by_factor": {
@@ -100,6 +108,7 @@
   "ca_ae": {
     "portfolio_code": "AC5230IN",
     "portfolio_prefix": "ca_ae",
+    "portfolio_name": "Canadian Active",
     "time_series": "FaCS Canadian Active.xlsx",
     "tables": {
       "port_sum": {
@@ -108,6 +117,14 @@
         "filename": "Portfolio Risk Summary",
         "sub_tables": {
           "detail": {}
+        }
+      },
+      "as_return_table": {
+        "trailing_name": "CE6105IN",
+        "settings": "A S FYTD",
+        "filename": "A-S Return Table",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
         }
       },
       "as_return_decomp": {
@@ -210,6 +227,7 @@
   "ca_sc": {
     "portfolio_code": "AC053EIN",
     "portfolio_prefix": "ca_sc",
+    "portfolio_name": "Canadian Small Caps",
     "time_series": "FaCS Canadian Small Caps.xlsx",
     "tables": {
       "port_sum": {
@@ -217,6 +235,13 @@
         "filename": "Portfolio Risk Summary",
         "sub_tables": {
           "detail": {}
+        }
+      },
+      "as_return_table": {
+        "settings": "A S FYTD",
+        "filename": "A-S Return Table",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
         }
       },
       "as_return_decomp": {
@@ -308,6 +333,7 @@
   "ca_aq": {
     "portfolio_code": "CE6105IN",
     "portfolio_prefix": "ca_aq",
+    "portfolio_name": "Canadian Quantitative",
     "time_series": "FaCS Canadian Quantitative.xlsx",
     "tables": {
       "port_sum": {
@@ -316,6 +342,14 @@
         "filename": "Portfolio Risk Summary",
         "sub_tables": {
           "detail": {}
+        }
+      },
+      "as_return_table": {
+        "prefix_name": "AC5230IN",
+        "settings": "A S FYTD",
+        "filename": "A-S Return Table",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
         }
       },
       "as_return_decomp": {
@@ -418,6 +452,7 @@
   "us_sc": {
     "portfolio_code": "AU063HIN",
     "portfolio_prefix": "us_sc",
+    "portfolio_name": "US Small Caps",
     "time_series": "FaCS US Small Caps.xlsx",
     "tables": {
       "port_sum": {
@@ -425,6 +460,13 @@
         "filename": "Portfolio Risk Summary",
         "sub_tables": {
           "detail": {}
+        }
+      },
+      "as_return_table": {
+        "settings": "A S FYTD",
+        "filename": "A-S Return Table",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
         }
       },
       "as_return_decomp": {
@@ -516,6 +558,7 @@
   "gl_aq": {
     "portfolio_code": "ME176AIN",
     "portfolio_prefix": "gl_aq",
+    "portfolio_name": "Global Quantitative",
     "time_series": "FaCS Global Quantitative.xlsx",
     "tables": {
       "port_sum": {
@@ -524,6 +567,14 @@
         "filename": "Portfolio Risk Summary",
         "sub_tables": {
           "detail": {}
+        }
+      },
+      "as_return_table": {
+        "filename_prefix": "DERIVATIVES",
+        "settings": "A S FYTD",
+        "filename": "A-S Return Table",
+        "sub_tables": {
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_decomp": {
@@ -642,6 +693,7 @@
   "gl_es": {
     "portfolio_code": "ME179AIN",
     "portfolio_prefix": "gl_es",
+    "portfolio_name": "Global Quantitative ESG",
     "time_series": "FaCS Global Quantitative ESG.xlsx",
     "tables": {
       "port_sum": {
@@ -650,6 +702,14 @@
         "filename": "Portfolio Risk Summary",
         "sub_tables": {
           "detail": {}
+        }
+      },
+      "as_return_table": {
+        "filename_prefix": "DERIVATIVES",
+        "settings": "A S FYTD",
+        "filename": "A-S Return Table",
+        "sub_tables": {
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_decomp": {
@@ -768,6 +828,7 @@
   "gl_fu": {
     "portfolio_code": "ME173JIN",
     "portfolio_prefix": "gl_fu",
+    "portfolio_name": "Global Fundamental",
     "time_series": "FaCS Global Fundamental.xlsx",
     "tables": {
       "port_sum": {
@@ -775,6 +836,13 @@
         "filename": "Portfolio Risk Summary",
         "sub_tables": {
           "detail": {}
+        }
+      },
+      "as_return_table": {
+        "settings": "A S FYTD",
+        "filename": "A-S Return Table",
+        "sub_tables": {
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_decomp": {
@@ -880,6 +948,7 @@
   "gl_em": {
     "portfolio_code": "ME170YIN",
     "portfolio_prefix": "gl_em",
+    "portfolio_name": "Global Emerging Markets",
     "time_series": "FaCS Global Emerging Markets.xlsx",
     "tables": {
       "port_sum": {
@@ -887,6 +956,13 @@
         "filename": "Portfolio Risk Summary",
         "sub_tables": {
           "detail": {}
+        }
+      },
+      "as_return_table": {
+        "settings": "A S FYTD",
+        "filename": "A-S Return Table",
+        "sub_tables": {
+          "detail": { "skiprows": 15 }
         }
       },
       "as_return_decomp": {
