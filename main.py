@@ -20,7 +20,7 @@ def loop_portfolios():
     time_series_folder = 'Time-series Data'
     save_to_folder = 'Python Data'
 
-    compile_dict = {'fill_in': pd.DataFrame()}
+    compile_dict = {'fill_in': pd.DataFrame(), 'beta': pd.DataFrame()}
 
     for portfolio_name in portfolio_data:
         portfolio = lib.Portfolio(

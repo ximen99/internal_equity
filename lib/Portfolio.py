@@ -241,6 +241,13 @@ class Portfolio:
         self.transform_dfs.append(
             self.tables_dict['sector_positioning']['detail'])
 
+    def _transform_beta(self) -> None:
+        compile_df: pd.DataFrame = self.compile_dict['beta']
+        df: pd.DataFrame = self.tables_dict['beta']['detail']['df'].set_index(
+            ' ')
+        compile_df.loc['beta', self.portfolio_config['portfolio_name']
+                       ] = df.loc['Mean', 'Net Period Predicted Beta']
+
     def transform(self) -> None:
         self._transform_facs_final()
         self._transform_return_decomp_by_factor()
@@ -269,9 +276,10 @@ class Portfolio:
         # load port_sum table to output tables
         self.transform_dfs.append(
             self.tables_dict['sector_positioning']['detail'])
-
+        # concat to fill in summary table
         self.compile_dict['fill_in'] = pd.concat(
             [self.compile_dict['fill_in'], self._transform_fill_in()], ignore_index=True)
+        self._transform_beta()
 
     def download_transform_dfs(self) -> None:
         for df_dict in self.transform_dfs:

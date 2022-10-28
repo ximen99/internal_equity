@@ -109,6 +109,13 @@
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
+      },
+      "beta": {
+        "folder_name": "BETA 1",
+        "filename": "ME178AIN_Beta",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
       }
     }
   },
@@ -236,6 +243,13 @@
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
+      },
+      "beta": {
+        "folder_name": "BETA 2",
+        "filename": "AC5230IN_Beta",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
       }
     }
   },
@@ -348,6 +362,13 @@
         "filename": "AC053EIN_Facs exposure vs BMK",
         "sub_tables": {
           "detail": { "skiprows": 11 }
+        }
+      },
+      "beta": {
+        "folder_name": "BETA 3",
+        "filename": "AC053EIN_Beta",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
         }
       }
     }
@@ -476,6 +497,13 @@
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
+      },
+      "beta": {
+        "folder_name": "BETA 2",
+        "filename": "CE6105IN_Beta",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
       }
     }
   },
@@ -588,6 +616,13 @@
         "filename": "AU063HIN_Facs exposure vs BMK",
         "sub_tables": {
           "detail": { "skiprows": 11 }
+        }
+      },
+      "beta": {
+        "folder_name": "BETA 4",
+        "filename": "AU063HIN_Beta",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
         }
       }
     }
@@ -732,6 +767,13 @@
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
+      },
+      "beta": {
+        "folder_name": "BETA 5",
+        "filename": "ME176AIN_DERIVATIVES_Beta",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
       }
     }
   },
@@ -875,6 +917,13 @@
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
+      },
+      "beta": {
+        "folder_name": "BETA 5",
+        "filename": "ME179AIN_DERIVATIVES_Beta",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
       }
     }
   },
@@ -1002,6 +1051,13 @@
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
+      },
+      "beta": {
+        "folder_name": "BETA 1",
+        "filename": "ME173JIN_Beta",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
       }
     }
   },
@@ -1128,6 +1184,13 @@
         "filename": "ME170YIN_Facs exposure vs BMK",
         "sub_tables": {
           "detail": { "skiprows": 11 }
+        }
+      },
+      "beta": {
+        "folder_name": "BETA 6",
+        "filename": "ME170YIN_Beta",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
         }
       }
     }
