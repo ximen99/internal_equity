@@ -16,7 +16,7 @@ def loop_portfolios():
 
     date = '2022-09-30'
 
-    source_folder = 'Download Extracted'
+    source_folder = 'DE'
     time_series_folder = 'Time-series Data'
     save_to_folder = 'Python Data'
 
