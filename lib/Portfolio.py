@@ -272,8 +272,11 @@ class Portfolio:
         self._transform_top_bottom()
         self._transform_top_ten()
         self._transform_bottom_ten()
-        self._transform_sector_positioning()
         # load port_sum table to output tables
+        self.transform_dfs.append(
+            self.tables_dict['port_sum']['detail'])
+        self._transform_sector_positioning()
+        # load sector_positioning table to output tables
         self.transform_dfs.append(
             self.tables_dict['sector_positioning']['detail'])
         # concat to fill in summary table
