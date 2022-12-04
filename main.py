@@ -14,7 +14,7 @@ def loop_portfolios():
     portfolio_data = open(json_dir)
     portfolio_data = json.load(portfolio_data)
 
-    date = '2022-10-31'
+    date = '2022-11-30'
 
     source_folder = 'DE'
     time_series_folder = 'Time-series Data'

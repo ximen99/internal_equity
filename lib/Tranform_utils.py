@@ -195,3 +195,16 @@ def top_bottom(data: pd.DataFrame, table_name: str) -> pd.DataFrame:
     final_df.columns = ['Asset ID', table_name, 'GICS Sector', 'Periods In Portfolio',
                         'Periods In Benchmark', 'Average Active Weight', 'Selection', 'Total']
     return final_df
+
+
+def daily_to_monthly(df: pd.DataFrame, date_col: str) -> pd.DataFrame:
+    return (
+        df
+        .assign(**{date_col: lambda df_: pd.to_datetime(df_[date_col])})
+        .assign(**{'month': lambda df_: df_[date_col].dt.to_period('M')})
+        .assign(**{'month end': lambda df_: df_.groupby('month')[date_col].transform('max')})
+        .pipe(lambda df_: df_.loc[df_[date_col] == df_['month end']])
+        .assign(**{date_col: lambda df_: pd.to_datetime(df_['month'].dt.to_timestamp()).dt.date})
+        .drop(['month', 'month end'], axis=1)
+        .reset_index(drop=True)
+    )

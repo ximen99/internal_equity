@@ -58,7 +58,11 @@ class Portfolio:
 
     def _transform_return_decomp_by_factor(self) -> None:
         df = self.tables_dict['factors_return_decomp_by_factor']['detail']['df']
-        result_df = tu.return_decomposition(df)
+        result_df = (
+            df
+            .pipe(tu.daily_to_monthly, date_col=" ")
+            .pipe(tu.return_decomposition)
+        )
         # made changes to source data so update table dict
         self.tables_dict['factors_return_decomp_by_factor']['detail']['df'] = result_df
         self.transform_dfs.append(
@@ -82,8 +86,11 @@ class Portfolio:
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
 
     def _transform_factor_risk(self) -> None:
-        df = self.tables_dict['factors_risk']['detail']['df']
-        result_df = tu.risk_decomposition(df)
+        result_df = (
+            self.tables_dict['factors_risk']['detail']['df']
+            .pipe(tu.daily_to_monthly, date_col=" ")
+            .pipe(tu.risk_decomposition)
+        )
         self.tables_dict['factors_risk']['detail']['df'] = result_df
         self.transform_dfs.append(
             self.tables_dict['factors_risk']['detail'])
