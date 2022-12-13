@@ -17,13 +17,13 @@ def loop_portfolios():
     date = '2022-11-30'
 
     source_folder = 'DE'
-    time_series_folder = 'Time-series Data'
+    time_series_folder = 'Time-series Data Monthly'
     save_to_folder = 'Python Data'
 
     compile_dict = {'fill_in': pd.DataFrame(), 'beta': pd.DataFrame()}
 
     for portfolio_name in portfolio_data:
-        portfolio = lib.Portfolio(
+        portfolio = lib.portfolio(
             source_folder, time_series_folder, save_to_folder, date, portfolio_data[portfolio_name], compile_dict)
         portfolio.load()
         print(f'finished loading of {portfolio_name}')
