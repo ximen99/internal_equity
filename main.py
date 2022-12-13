@@ -41,6 +41,7 @@ def loop_portfolios():
 
 def main():
     loop_portfolios()
+    lib.M_To_Q.transform()
 
 
 if __name__ == "__main__":
