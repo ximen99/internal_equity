@@ -23,7 +23,7 @@ def loop_portfolios():
     compile_dict = {'fill_in': pd.DataFrame(), 'beta': pd.DataFrame()}
 
     for portfolio_name in portfolio_data:
-        portfolio = lib.portfolio(
+        portfolio = lib.Portfolio(
             source_folder, time_series_folder, save_to_folder, date, portfolio_data[portfolio_name], compile_dict)
         portfolio.load()
         print(f'finished loading of {portfolio_name}')
