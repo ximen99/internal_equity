@@ -116,6 +116,13 @@
         "sub_tables": {
           "detail": { "skiprows": 13 }
         }
+      },
+      "facs_activeExp": {
+        "folder_name": "ME178_173 NLT",
+        "filename": "ME178AIN_GEMLT FACTOR ACTIVE EXP",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
       }
     }
   },
@@ -250,6 +257,14 @@
         "sub_tables": {
           "detail": { "skiprows": 13 }
         }
+      },
+      "facs_activeExp": {
+        "trailing_name": "CE6105IN",
+        "settings": "Abs FACS GEMLT",
+        "filename": "GEMLT FACTOR ACTIVE EXP",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
       }
     }
   },
@@ -358,8 +373,8 @@
         }
       },
       "facs": {
-        "folder_name": "AC053EIN Facs Vs BMK",
-        "filename": "AC053EIN_Facs exposure vs BMK",
+        "settings": "Facs Vs BMK",
+        "filename": "Facs exposure vs BMK",
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
@@ -369,6 +384,13 @@
         "filename": "AC053EIN_Beta",
         "sub_tables": {
           "detail": { "skiprows": 13 }
+        }
+      },
+      "facs_activeExp": {
+        "settings": "Abs FACS GEMLT",
+        "filename": "GEMLT FACTOR ACTIVE EXP",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       }
     }
@@ -504,6 +526,14 @@
         "sub_tables": {
           "detail": { "skiprows": 13 }
         }
+      },
+      "facs_activeExp": {
+        "prefix_name": "AC5230IN",
+        "settings": "Abs FACS GEMLT",
+        "filename": "GEMLT FACTOR ACTIVE EXP",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
       }
     }
   },
@@ -623,6 +653,13 @@
         "filename": "AU063HIN_Beta",
         "sub_tables": {
           "detail": { "skiprows": 13 }
+        }
+      },
+      "facs_activeExp": {
+        "folder_name": "AU063HIN_RUSSEL",
+        "filename": "AU063HIN_GEMLT FACTOR ACTIVE EXP",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       }
     }
@@ -774,6 +811,13 @@
         "sub_tables": {
           "detail": { "skiprows": 13 }
         }
+      },
+      "facs_activeExp": {
+        "folder_name": "ME176_179 LT",
+        "filename": "ME176AIN_DERIVATIVES_GEMLT FACTOR ACTIVE EXP",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
       }
     }
   },
@@ -924,6 +968,13 @@
         "sub_tables": {
           "detail": { "skiprows": 13 }
         }
+      },
+      "facs_activeExp": {
+        "folder_name": "ME176_179 LT",
+        "filename": "ME179AIN_DERIVATIVES_GEMLT FACTOR ACTIVE EXP",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
       }
     }
   },
@@ -1058,6 +1109,13 @@
         "sub_tables": {
           "detail": { "skiprows": 13 }
         }
+      },
+      "facs_activeExp": {
+        "folder_name": "ME178_173 NLT",
+        "filename": "ME173JIN_GEMLT FACTOR ACTIVE EXP",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
       }
     }
   },
@@ -1191,6 +1249,13 @@
         "filename": "ME170YIN_Beta",
         "sub_tables": {
           "detail": { "skiprows": 13 }
+        }
+      },
+      "facs_activeExp": {
+        "settings": "FACS GEMLT",
+        "filename": "GEMLT FACTOR ACTIVE EXP",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
         }
       }
     }

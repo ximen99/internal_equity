@@ -55,6 +55,8 @@ class Portfolio:
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
             'facs_final.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
+        self.transform_dfs.append({'df': df.set_index(
+            'Asset ID'), 'save_to_name': self.tables_dict['facs']['detail']['save_to_name']})
 
     def _transform_return_decomp_by_factor(self) -> None:
         df = self.tables_dict['factors_return_decomp_by_factor']['detail']['df']
@@ -255,6 +257,12 @@ class Portfolio:
         compile_df.loc['beta', self.portfolio_config['portfolio_name']
                        ] = df.loc['Mean', 'Net Period Predicted Beta']
 
+    def _transform_facs_active_exposure(self) -> None:
+        self.tables_dict['facs_activeExp']['detail']['df'] = self.tables_dict['facs_activeExp']['detail']['df'].set_index(
+            'Asset ID')
+        self.transform_dfs.append(
+            self.tables_dict['facs_activeExp']['detail'])
+
     def transform(self) -> None:
         self._transform_facs_final()
         self._transform_return_decomp_by_factor()
@@ -290,6 +298,7 @@ class Portfolio:
         self.compile_dict['fill_in'] = pd.concat(
             [self.compile_dict['fill_in'], self._transform_fill_in()], ignore_index=True)
         self._transform_beta()
+        self._transform_facs_active_exposure()
 
     def download_transform_dfs(self) -> None:
         for df_dict in self.transform_dfs:
