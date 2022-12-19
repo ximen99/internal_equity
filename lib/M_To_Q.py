@@ -1,6 +1,7 @@
 import os
 import pathlib as p
 import pandas as pd
+from datetime import datetime
 
 monthly_folder = 'Time-series Data Monthly'
 quarterly_folder = 'Time-series Data'
@@ -12,14 +13,18 @@ def remove_files(folder):
         os.remove(folder + '/' + file)
 
 
+def check_quarter(dt: datetime) -> bool:
+    return dt.month % 3 == 0
+
+
 def transform_file(path: p.Path):
     file_name = path.name
 
     def _transform(df) -> pd.DataFrame:
-        if df['Date'].dt.is_quarter_end.iloc[-1]:
-            return df.query('Date.dt.is_quarter_end', engine='python')
+        if df['Date'].map(check_quarter).iloc[-1]:
+            return df.query('Date.map(@check_quarter)', engine='python')
         else:
-            return pd.concat([df.query('Date.dt.is_quarter_end', engine='python'), df.iloc[-1].to_frame().T], ignore_index=True)
+            return pd.concat([df.query('Date.map(@check_quarter)', engine='python'), df.iloc[-1].to_frame().T], ignore_index=True)
 
     def _save_excel(df) -> pd.DataFrame:
         df.to_excel(workingDir / quarterly_folder / file_name)
