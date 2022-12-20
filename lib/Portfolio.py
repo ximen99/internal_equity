@@ -55,8 +55,8 @@ class Portfolio:
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
             'facs_final.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})
-        self.transform_dfs.append({'df': df.set_index(
-            'Asset ID'), 'save_to_name': self.tables_dict['facs']['detail']['save_to_name']})
+        self.transform_dfs.append({'df': df.drop(
+            columns='Asset ID').set_index('Asset Name'), 'save_to_name': self.tables_dict['facs']['detail']['save_to_name']})
 
     def _transform_return_decomp_by_factor(self) -> None:
         df = self.tables_dict['factors_return_decomp_by_factor']['detail']['df']
@@ -258,8 +258,8 @@ class Portfolio:
                        ] = df.loc['Mean', 'Net Period Predicted Beta']
 
     def _transform_facs_active_exposure(self) -> None:
-        self.tables_dict['facs_activeExp']['detail']['df'] = self.tables_dict['facs_activeExp']['detail']['df'].set_index(
-            'Asset ID')
+        self.tables_dict['facs_activeExp']['detail']['df'] = self.tables_dict['facs_activeExp']['detail']['df'].drop(
+            columns='Asset ID').set_index('Asset Name')
         self.transform_dfs.append(
             self.tables_dict['facs_activeExp']['detail'])
 
