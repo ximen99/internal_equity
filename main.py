@@ -14,10 +14,10 @@ def loop_portfolios():
     portfolio_data = open(json_dir)
     portfolio_data = json.load(portfolio_data)
 
-    date = '2022-11-30'
+    date = '2022-12-31'
 
     source_folder = 'DE'
-    time_series_folder = 'Time-series Data Monthly'
+    time_series_folder = 'Time-series Data'
     save_to_folder = 'Python Data'
 
     compile_dict = {'fill_in': pd.DataFrame(), 'beta': pd.DataFrame()}
@@ -41,7 +41,6 @@ def loop_portfolios():
 
 def main():
     loop_portfolios()
-    lib.M_To_Q.transform()
 
 
 if __name__ == "__main__":
