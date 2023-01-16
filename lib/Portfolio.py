@@ -149,7 +149,7 @@ class Portfolio:
             df
             .query("`Asset Name`.str.contains('Total') == False", engine="python")
             .pipe(tu.remove_percentages, 'Average Portfolio Weight')
-            .assign(**{'GICS Sector Name': lambda df_: df_['GICS Sector Name'].fillna('Cash')})
+            .assign(**{'GICS Sector Name': lambda df_: df_['GICS Sector Name'].fillna('Cash & Others')})
         )
         self.tables_dict['specific']['detail']['df'] = result_df
         self.transform_dfs.append(self.tables_dict['specific']['detail'])
