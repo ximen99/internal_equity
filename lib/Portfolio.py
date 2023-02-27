@@ -291,9 +291,6 @@ class Portfolio:
         self.transform_dfs.append(
             self.tables_dict['port_sum']['detail'])
         self._transform_sector_positioning()
-        # load sector_positioning table to output tables
-        self.transform_dfs.append(
-            self.tables_dict['sector_positioning']['detail'])
         # concat to fill in summary table
         self.compile_dict['fill_in'] = pd.concat(
             [self.compile_dict['fill_in'], self._transform_fill_in()], ignore_index=True)

@@ -14,7 +14,7 @@ def loop_portfolios():
     portfolio_data = open(json_dir)
     portfolio_data = json.load(portfolio_data)
 
-    date = '2022-12-31'
+    date = '2023-01-31'
 
     source_folder = 'DE'
     time_series_folder = 'Time-series Data'
@@ -23,8 +23,12 @@ def loop_portfolios():
     compile_dict = {'fill_in': pd.DataFrame(), 'beta': pd.DataFrame()}
 
     for portfolio_name in portfolio_data:
-        portfolio = lib.Portfolio(
-            source_folder, time_series_folder, save_to_folder, date, portfolio_data[portfolio_name], compile_dict)
+        if portfolio_name == 'ti':
+            portfolio = lib.Portfolio_Total(
+                source_folder, time_series_folder, save_to_folder, date, portfolio_data[portfolio_name], compile_dict)
+        else:
+            portfolio = lib.Portfolio(
+                source_folder, time_series_folder, save_to_folder, date, portfolio_data[portfolio_name], compile_dict)
         portfolio.load()
         print(f'finished loading of {portfolio_name}')
         portfolio.transform()
