@@ -1,29 +1,23 @@
 from .Table import Table
-import pathlib as p
 import pandas as pd
 from . import Tranform_utils as tu
+from . import config
 
 
 class Portfolio:
-    def __init__(self, sourceDir: str, time_series_folder: str, save_to_folder: str, date: str, portfolio_config: dict, compile_dict: dict) -> None:
-        self.workingDir = p.Path(__file__).parents[2]
+    def __init__(self, date: str, portfolio_config: dict, compile_dict: dict) -> None:
         self.portfolio_config = portfolio_config
-        self.sourceDir = sourceDir
         self.date = date
         self.tables_dict = {}
-        self.time_series_folder = time_series_folder
         self.check_dfs = []
         self.transform_dfs = []
-        # create save to folder
-        self.save_to_dir = self.workingDir / save_to_folder
-        self.save_to_dir.mkdir(exist_ok=True)
         self.compile_dict = compile_dict
 
     def _load_single_table(self, table_name: str) -> None:
         portfolio_code = self.portfolio_config['portfolio_code']
         table_config = self.portfolio_config['tables'][table_name]
         portfolio_prefix = self.portfolio_config['portfolio_prefix']
-        table = Table(self.sourceDir, self.date,
+        table = Table(config.SOURCE_DIR, self.date,
                       portfolio_code, portfolio_prefix, table_config, table_name)
         table.load()
         self.tables_dict[table_name] = table.table_dict
@@ -40,16 +34,13 @@ class Portfolio:
 
     def download_check_dfs(self) -> None:
         self._update_check_list()
-        check_folder = 'check'
         for df_dict in self.check_dfs:
-            download_dir = self.workingDir / check_folder
-            download_dir.mkdir(exist_ok=True)
-            df_dir = download_dir / df_dict['save_to_name']
+            df_dir = config.CHECK_DIR / df_dict['save_to_name']
             df_dict['df'].to_csv(df_dir, index=False)
 
     def _transform_facs_final(self) -> None:
         df = self.tables_dict['facs']['detail']['df']
-        file_dir = self.workingDir / self.time_series_folder / \
+        file_dir = config.TIME_SERIES_DIR / \
             self.portfolio_config['time_series']
         result_df = tu.add_time_series(df, self.date, file_dir)
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
@@ -299,5 +290,5 @@ class Portfolio:
 
     def download_transform_dfs(self) -> None:
         for df_dict in self.transform_dfs:
-            df_dir = self.save_to_dir / df_dict['save_to_name']
+            df_dir = config.SAVE_DIR / df_dict['save_to_name']
             df_dict['df'].to_csv(df_dir)
