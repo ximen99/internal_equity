@@ -2,6 +2,7 @@ from typing import List
 import pandas as pd
 import numpy as np
 import pathlib as p
+from . import config
 
 
 def remove_substring_from_columns(data: pd.DataFrame, patterns: List[str]) -> pd.DataFrame:
@@ -208,3 +209,23 @@ def daily_to_monthly(df: pd.DataFrame, date_col: str) -> pd.DataFrame:
         .drop(['month', 'month end'], axis=1)
         .reset_index(drop=True)
     )
+
+
+def country_exposure(data: pd.DataFrame) -> pd.DataFrame:
+    country_code = pd.read_csv(config.COUNTRY_CODES_DIR)
+    processed_data = (
+        data
+        [data['Parent Node'] == '/']
+        [data['Country Of Exposure'].notna()]
+        [["Asset ID", "Weight (%)", "Active Weight (%)"]]
+    )
+    processed_data = remove_percentages(processed_data, 'Weight (%)')
+    processed_data = (pd
+                      .merge(left=processed_data, right=country_code, left_on="Asset ID", right_on="Alpha-3 code")
+                      .groupby("Country")
+                      ["Active Weight (%)", "Weight (%)"]
+                      .sum()
+                      .sort_values(by="Weight (%)", ascending=False)
+                      [["Active Weight (%)"]]
+                      )
+    return processed_data

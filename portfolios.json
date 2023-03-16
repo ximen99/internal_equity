@@ -123,6 +123,13 @@
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
+      },
+      "country_exposure": {
+        "settings": "FACTOR FYTD 3",
+        "filename": "Country Active Weight",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
       }
     }
   },
@@ -818,6 +825,14 @@
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
+      },
+      "country_exposure": {
+        "filename_prefix": "DERIVATIVES",
+        "settings": "FACTOR FYTD 3",
+        "filename": "Country Active Weight",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
       }
     }
   },
@@ -975,6 +990,14 @@
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
+      },
+      "country_exposure": {
+        "filename_prefix": "DERIVATIVES",
+        "settings": "FACTOR FYTD 3",
+        "filename": "Country Active Weight",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
       }
     }
   },
@@ -1116,6 +1139,13 @@
         "sub_tables": {
           "detail": { "skiprows": 11 }
         }
+      },
+      "country_exposure": {
+        "settings": "FACTOR FYTD 3",
+        "filename": "Country Active Weight",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
       }
     }
   },
@@ -1256,6 +1286,13 @@
         "filename": "GEMLT FACTOR ACTIVE EXP",
         "sub_tables": {
           "detail": { "skiprows": 11 }
+        }
+      },
+      "country_exposure": {
+        "settings": "FACTOR FYTD 3",
+        "filename": "Country Active Weight",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
         }
       }
     }
