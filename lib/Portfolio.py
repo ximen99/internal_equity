@@ -254,6 +254,20 @@ class Portfolio:
         self.transform_dfs.append(
             self.tables_dict['facs_activeExp']['detail'])
 
+    def _transform_time_series_return_attr(self) -> None:
+        df = self.tables_dict['time_series_return_attr']['detail']['df']
+        result_df = (
+            df
+            .pipe(tu.remove_substring_from_columns, ['Net', 'Period', '[', '] '])
+            .rename(columns={' ': 'Date'})
+            .query("Date.str.contains('Mean|Std Dev|Min|Max') == False", engine="python")
+            .pipe(tu.remove_percentages, 'Benchmark')
+            .set_index('Date')
+        )
+        self.tables_dict['time_series_return_attr']['detail']['df'] = result_df
+        self.transform_dfs.append(
+            self.tables_dict['time_series_return_attr']['detail'])
+
     def transform(self) -> None:
         self._transform_facs_final()
         self._transform_return_decomp_by_factor()
@@ -287,6 +301,7 @@ class Portfolio:
             [self.compile_dict['fill_in'], self._transform_fill_in()], ignore_index=True)
         self._transform_beta()
         self._transform_facs_active_exposure()
+        self._transform_time_series_return_attr()
 
     def download_transform_dfs(self) -> None:
         for df_dict in self.transform_dfs:

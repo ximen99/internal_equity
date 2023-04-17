@@ -11,8 +11,8 @@ json_dir = config.CODE_DIR / "portfolios.json"
 portfolio_data = open(json_dir)
 portfolio_data = json.load(portfolio_data)
 
-date_this_qtr = '2023-02-28'
-date_last_qtr = '2022-11-30'
+date_this_qtr = '2023-03-31'
+date_last_qtr = '2022-12-31'
 
 
 def loop_portfolios():
