@@ -2,14 +2,16 @@ from . import Tranform_utils as tu
 import pandas as pd
 from . import config
 from .Table import Table
+from pathlib import Path
 
 
 class Portfolios_Country:
-    def __init__(self, date: str, portfolios_config: dict) -> None:
+    def __init__(self, date: str, portfolios_config: dict, source_dir: Path) -> None:
         self.date = date
         self.portfolios_config = portfolios_config
         self.tables_dict = {}
         self.global_port = ['gl_es', 'gl_fu', 'gl_aq', 'gl_th', 'gl_em']
+        self.source_dir = source_dir
 
     def load(self) -> None:
         for port in self.global_port:
@@ -17,7 +19,7 @@ class Portfolios_Country:
             portfolio_prefix = self.portfolios_config[port]['portfolio_prefix']
             table_name = 'country_exposure'
             table_config = self.portfolios_config[port]['tables'][table_name]
-            table = Table(config.SOURCE_DIR, self.date,
+            table = Table(self.source_dir, self.date,
                           portfolio_code, portfolio_prefix, table_config, table_name)
             table.load()
             self.tables_dict[port] = table.table_dict['detail']
@@ -57,10 +59,11 @@ class Portfolios_Country:
 
 
 class Comparison:
-    def __init__(self, port_this_qtr: dict, port_last_qtr: dict):
+    def __init__(self, port_this_qtr: dict, port_last_qtr: dict, save_dir: Path):
         self.port_this_qtr = port_this_qtr
         self.port_last_qtr = port_last_qtr
         self.dict = {}
+        self.save_dir = save_dir
 
     def calculate(self) -> None:
         for (x, y) in zip(self.port_this_qtr.benchmark_group, self.port_last_qtr.benchmark_group):
@@ -79,11 +82,10 @@ class Comparison:
             self.dict[x] = output
 
     def write_to_csv(self) -> None:
-        upload_dir = config.SAVE_DIR
-        upload_dir.mkdir(exist_ok=True)
+        self.save_dir.mkdir(exist_ok=True)
         for (benchmark, dataframe) in self.dict.items():
             benchmark_str = benchmark.replace(r'/', '_')
-            upload_file_dir = upload_dir / \
+            upload_file_dir = self.save_dir / \
                 ("Country_" + benchmark_str + ".csv")
             dataframe.to_csv(upload_file_dir)
             print("Finish writing " + "Country_" + benchmark_str + ".csv")

@@ -1,23 +1,24 @@
 from .Table import Table
 import pandas as pd
 from . import Tranform_utils as tu
-from . import config
+from . import FilesDir
 
 
 class Portfolio:
-    def __init__(self, date: str, portfolio_config: dict, compile_dict: dict) -> None:
+    def __init__(self, date: str, portfolio_config: dict, compile_dict: dict, dir: FilesDir) -> None:
         self.portfolio_config = portfolio_config
         self.date = date
         self.tables_dict = {}
         self.check_dfs = []
         self.transform_dfs = []
         self.compile_dict = compile_dict
+        self.dir = dir
 
     def _load_single_table(self, table_name: str) -> None:
         portfolio_code = self.portfolio_config['portfolio_code']
         table_config = self.portfolio_config['tables'][table_name]
         portfolio_prefix = self.portfolio_config['portfolio_prefix']
-        table = Table(config.SOURCE_DIR, self.date,
+        table = Table(self.dir.source_dir, self.date,
                       portfolio_code, portfolio_prefix, table_config, table_name)
         table.load()
         self.tables_dict[table_name] = table.table_dict
@@ -35,12 +36,12 @@ class Portfolio:
     def download_check_dfs(self) -> None:
         self._update_check_list()
         for df_dict in self.check_dfs:
-            df_dir = config.CHECK_DIR / df_dict['save_to_name']
+            df_dir = self.dir.check_dir / df_dict['save_to_name']
             df_dict['df'].to_csv(df_dir, index=False)
 
     def _transform_facs_final(self) -> None:
         df = self.tables_dict['facs']['detail']['df']
-        file_dir = config.TIME_SERIES_DIR / \
+        file_dir = self.dir.time_series_dir / \
             self.portfolio_config['time_series']
         result_df = tu.add_time_series(df, self.date, file_dir)
         file_name = self.portfolio_config['portfolio_prefix'] + '_' \
@@ -305,5 +306,5 @@ class Portfolio:
 
     def download_transform_dfs(self) -> None:
         for df_dict in self.transform_dfs:
-            df_dir = config.SAVE_DIR / df_dict['save_to_name']
+            df_dir = self.dir.save_dir / df_dict['save_to_name']
             df_dict['df'].to_csv(df_dir)
