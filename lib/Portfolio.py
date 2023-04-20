@@ -293,11 +293,9 @@ class Portfolio:
         self._transform_top_bottom()
         self._transform_top_ten()
         self._transform_bottom_ten()
-        # load port_sum table to output tables
         self.transform_dfs.append(
             self.tables_dict['port_sum']['detail'])
         self._transform_sector_positioning()
-        # concat to fill in summary table
         self.compile_dict['fill_in'] = pd.concat(
             [self.compile_dict['fill_in'], self._transform_fill_in()], ignore_index=True)
         self._transform_beta()
