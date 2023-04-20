@@ -28,6 +28,11 @@ class Dashboard:
             portfolio.download_transform_dfs()
             print(f'finished downloading target data for {portfolio_name}')
 
+    def loop_comiles(self) -> None:
+        for table_name, table in self.compile_dict.items():
+            table.to_csv(self.dir.save_dir / (table_name+'.csv'), index=False)
+            print(f'finished saving {table_name}')
+
     def portfolio_generator(self, port_name) -> Portfolio:
         if port_name == 'ti':
             return Portfolio_Total(
@@ -59,4 +64,5 @@ class Dashboard:
 
     def process(self) -> None:
         self.loop_portfolios()
+        self.loop_comiles()
         # self.calculate_country_exposure()
