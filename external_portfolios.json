@@ -158,7 +158,7 @@
     "portfolio_code": "ME170T",
     "portfolio_prefix": "shroders",
     "portfolio_name": "Schroders - GEM Core",
-    "time_series": "FaCS APS.xlsx",
+    "time_series": "FaCS Schroders - GEM Core.xlsx",
     "tables": {
       "port_sum": {
         "settings": "A S 2 FYTD",
