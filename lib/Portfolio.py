@@ -2,6 +2,7 @@ from .Table import Table
 import pandas as pd
 from . import Tranform_utils as tu
 from . import FilesDir
+from . import config
 
 
 class Portfolio:
@@ -269,6 +270,13 @@ class Portfolio:
         self.transform_dfs.append(
             self.tables_dict['time_series_return_attr']['detail'])
 
+    def _need_country_attribution(self) -> bool:
+        port = self.portfolio_config['portfolio_prefix']
+        for ls in config.GLOBAL_BENCHMARK_MAPPING.values():
+            if port in ls:
+                return True
+        return False
+
     def transform(self) -> None:
         self._transform_facs_final()
         self._transform_return_decomp_by_factor()
@@ -279,7 +287,7 @@ class Portfolio:
         self._transform_industry_attribution()
         self._transform_style_attribution()
 
-        if 'gl_' in self.portfolio_config['portfolio_prefix']:
+        if self._need_country_attribution():
             self._transform_country_attribution()
 
         self._transform_specific()
