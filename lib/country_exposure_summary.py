@@ -10,11 +10,20 @@ class Portfolios_Country:
         self.date = date
         self.portfolios_config = portfolios_config
         self.tables_dict = {}
-        self.global_port = ['gl_es', 'gl_fu', 'gl_aq', 'gl_th', 'gl_em']
         self.source_dir = source_dir
+        self.benchmark_group = {}
+        self.port_list = []
+        self.init_update()
+
+    def init_update(self) -> list:
+        for port in self.portfolios_config:
+            benchmark = self.get_benchmark(port)
+            if benchmark:
+                self.port_list.append(port)
+                self.benchmark_group[benchmark] = {}
 
     def load(self) -> None:
-        for port in self.global_port:
+        for port in self.port_list:
             portfolio_code = self.portfolios_config[port]['portfolio_code']
             portfolio_prefix = self.portfolios_config[port]['portfolio_prefix']
             table_name = 'country_exposure'
@@ -38,15 +47,17 @@ class Portfolios_Country:
                   self.portfolios_config[port]['portfolio_name'])
 
     def redirect(self) -> None:
-        self.benchmark_group = {'MSCI World ex Canada': {}, 'MSCI EM': {}}
-        for port in self.global_port:
+        for port in self.port_list:
             portfolio_name = self.portfolios_config[port]['portfolio_name']
             portfolio_data = self.tables_dict[port]['country_exposure']
             to_update = {portfolio_name: portfolio_data}
-            if portfolio_name == 'Global Emerging Markets':
-                self.benchmark_group['MSCI EM'].update(to_update)
-            else:
-                self.benchmark_group['MSCI World ex Canada'].update(to_update)
+            benchmark = self.get_benchmark(port)
+            self.benchmark_group[benchmark].update(to_update)
+
+    def get_benchmark(self, port):
+        for benchmark in config.GLOBAL_BENCHMARK_MAPPING:
+            if port in config.GLOBAL_BENCHMARK_MAPPING[benchmark]:
+                return benchmark
 
     def append(self) -> None:
         for i in self.benchmark_group:
