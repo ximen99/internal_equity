@@ -1,6 +1,0 @@
-# %%
-import lib
-
-
-print('')
-# %%
