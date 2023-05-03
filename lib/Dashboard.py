@@ -34,7 +34,7 @@ class Dashboard:
             print(f'finished saving {table_name}')
 
     def portfolio_generator(self, port_name) -> Portfolio:
-        if port_name == 'ti':
+        if port_name in ['ti', 'te']:
             return Portfolio_Total(
                 self.date_this_qtr, self.port_data[port_name], self.compile_dict, self.dir)
         else:
@@ -65,4 +65,4 @@ class Dashboard:
     def process(self) -> None:
         self.loop_portfolios()
         self.loop_comiles()
-        self.calculate_country_exposure()
+        # self.calculate_country_exposure()

@@ -773,5 +773,34 @@
         }
       }
     }
+  },
+  "te": {
+    "portfolio_code": "External Active_Port",
+    "portfolio_prefix": "te",
+    "portfolio_name": "Total External Active",
+    "time_series": "FaCS Total External Active.xlsx",
+    "tables": {
+      "facs": {
+        "folder_name": "Total External Active FACS vs BMK",
+        "filename": "Total External Active_ptf_Facs exposure vs BMK",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "port_sum": {
+        "folder_name": "Total External Active FACTOR FYTD",
+        "filename": "Total External Active_ptf_Portfolio Risk Summary",
+        "sub_tables": {
+          "detail": {}
+        }
+      },
+      "sector_positioning": {
+        "folder_name": "Total External Active FACTOR FYTD",
+        "filename": "Total External Active_ptf_Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      }
+    }
   }
 }
