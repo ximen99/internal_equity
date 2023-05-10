@@ -1,5 +1,6 @@
 from . import Tranform_utils as tu
 import pandas as pd
+import numpy as np
 from . import config
 from .Table import Table
 from pathlib import Path
@@ -64,8 +65,10 @@ class Portfolios_Country:
             lists = []
             for attribute, value in self.benchmark_group[i].items():
                 lists.append(value)
-            self.benchmark_group[i]['combined_portfolio'] = pd.concat(
-                lists, axis=1)
+            df = pd.concat(lists, axis=1)
+            # sort index in specific order
+            df = df.reindex(config.COUNTRY_EXPOSURE_ORDER, axis=0, level=0)
+            self.benchmark_group[i]['combined_portfolio'] = df
             print("finish compiling benchmark " + attribute)
 
 
@@ -90,6 +93,17 @@ class Comparison:
                 .fillna(0)
             )
             output = output.reindex(sorted(output.columns), axis=1)
+            totals = output.groupby(level=0).sum()
+            totals.index = pd.MultiIndex.from_product(
+                [totals.index, ['Total']], names=['Region', 'Country'])
+            output = (
+                pd.concat([output, totals])
+                .sort_index(key=lambda x: x.map({'Total': 0}).fillna(1), level=1)
+                .sort_index(level=0, sort_remaining=False)
+                .reindex(config.COUNTRY_EXPOSURE_ORDER, axis=0, level=0)
+                .reset_index()
+                .assign(Country=lambda x: np.where(x['Country'] == 'Total', x['Region'], x['Country']))
+            )
             self.dict[x] = output
 
     def write_to_csv(self) -> None:
@@ -98,5 +112,5 @@ class Comparison:
             benchmark_str = benchmark.replace(r'/', '_')
             upload_file_dir = self.save_dir / \
                 ("Country_" + benchmark_str + ".csv")
-            dataframe.to_csv(upload_file_dir)
+            dataframe.to_csv(upload_file_dir, index=False)
             print("Finish writing " + "Country_" + benchmark_str + ".csv")

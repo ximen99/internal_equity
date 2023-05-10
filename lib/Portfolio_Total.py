@@ -28,7 +28,6 @@ class Portfolio_Total(Portfolio):
         result_df = tu.remove_percentages(result_df, 'Active Share')
         result_df.loc[dummy_row_name,
                       'Portfolio Code'] = self.portfolio_config['portfolio_code']
-
         return result_df
 
     def transform(self) -> None:

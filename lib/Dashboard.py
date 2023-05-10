@@ -18,6 +18,8 @@ class Dashboard:
 
     def loop_portfolios(self) -> None:
         for portfolio_name in self.port_data:
+            if portfolio_name in ['msciexca']:
+                continue
             portfolio = self.portfolio_generator(portfolio_name)
             portfolio.load()
             print(f'finished loading of {portfolio_name}')
@@ -28,7 +30,7 @@ class Dashboard:
             portfolio.download_transform_dfs()
             print(f'finished downloading target data for {portfolio_name}')
 
-    def loop_comiles(self) -> None:
+    def loop_compile_dict(self) -> None:
         for table_name, table in self.compile_dict.items():
             table.to_csv(self.dir.save_dir / (table_name+'.csv'), index=False)
             print(f'finished saving {table_name}')
@@ -63,6 +65,6 @@ class Dashboard:
             f.write(self.date_this_qtr)
 
     def process(self) -> None:
-        self.loop_portfolios()
-        self.loop_comiles()
-        # self.calculate_country_exposure()
+        # self.loop_portfolios()
+        # self.loop_compile_dict()
+        self.calculate_country_exposure()

@@ -14,4 +14,6 @@ TEST_DIR = FilesDir(CODE_DIR.parent)
 INTERNAL_JSON_DIR = CODE_DIR / 'internal_portfolios.json'
 EXTERNAL_JSON_DIR = CODE_DIR / 'external_portfolios.json'
 GLOBAL_BENCHMARK_MAPPING = {'MSCI EM': ['gl_em', 'shroders', 'gqg', 'arga'], 'MSCI World ex Canada': [
-    'gl_es', 'gl_fu', 'gl_aq', 'gl_th', 'gl_em']}
+    'gl_es', 'gl_fu', 'gl_aq', 'gl_th', 'gl_em', 'msciexca']}
+COUNTRY_EXPOSURE_ORDER = ['United States of America', 'China',
+                          'Developed Asia', 'Emerging Markets', 'Europe', 'Others', 'Canada']

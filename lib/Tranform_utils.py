@@ -215,17 +215,26 @@ def country_exposure(data: pd.DataFrame) -> pd.DataFrame:
     country_code = pd.read_csv(config.COUNTRY_CODES_DIR)
     processed_data = (
         data
-        [data['Parent Node'] == '/']
-        [data['Country Of Exposure'].notna()]
-        [["Asset ID", "Weight (%)", "Active Weight (%)"]]
+        .iloc[1:]
+        [(data['Parent Node'].str.fullmatch(r'\/[a-zA-Z ]+')
+          == True) | (data['Parent Node'] == "/")]
+        .assign(Region=lambda x: x['Parent Node'].str.replace('/', ''))
+        .assign(Region=lambda x: x.apply(lambda y: y['Region'] if y['Region'] != '' else np.nan, axis=1))
+        .assign(Region=lambda x: x['Region'].fillna(x['Asset ID']))
+        [['Region', "Asset ID", "Weight (%)", "Active Weight (%)"]]
     )
     processed_data = remove_percentages(processed_data, 'Weight (%)')
     processed_data = (pd
-                      .merge(left=processed_data, right=country_code, left_on="Asset ID", right_on="Alpha-3 code")
-                      .groupby("Country")
+                      .merge(left=processed_data, right=country_code, left_on="Asset ID", right_on="Alpha-3 code", how="left")
+                      [['Region', 'Country',
+                          'Weight (%)', 'Active Weight (%)']]
+                      .assign(Country=lambda x: x.apply(lambda y: y['Region'] if y['Region'] == 'U.S.' else y['Country'], axis=1))
+                      .replace('U.S.', 'United States of America')
+                      .dropna()
+                      .assign(Region=lambda x: x.apply(lambda y: 'China' if y['Country'] == 'China' else y['Region'], axis=1))
+                      .groupby(["Region", "Country"])
                       ["Active Weight (%)", "Weight (%)"]
-                      .sum()
-                      .sort_values(by="Weight (%)", ascending=False)
+                      .agg({'Active Weight (%)': 'sum', 'Weight (%)': 'sum'})
                       [["Active Weight (%)"]]
                       )
     return processed_data
