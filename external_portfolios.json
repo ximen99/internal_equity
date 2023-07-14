@@ -142,7 +142,7 @@
         "settings": "FACTOR FYTD 3",
         "filename": "Country Active Weight",
         "sub_tables": {
-          "detail": { "skiprows": 13 }
+          "detail": { "skiprows": 14 }
         }
       },
       "time_series_return_attr": {
@@ -297,7 +297,7 @@
         "settings": "FACTOR FYTD 3",
         "filename": "Country Active Weight",
         "sub_tables": {
-          "detail": { "skiprows": 13 }
+          "detail": { "skiprows": 14 }
         }
       },
       "time_series_return_attr": {
@@ -452,7 +452,7 @@
         "settings": "FACTOR FYTD 3",
         "filename": "Country Active Weight",
         "sub_tables": {
-          "detail": { "skiprows": 13 }
+          "detail": { "skiprows": 14 }
         }
       },
       "time_series_return_attr": {
@@ -607,7 +607,7 @@
         "settings": "FACTOR FYTD 3",
         "filename": "Country Active Weight",
         "sub_tables": {
-          "detail": { "skiprows": 13 }
+          "detail": { "skiprows": 14 }
         }
       },
       "time_series_return_attr": {
@@ -762,7 +762,7 @@
         "settings": "FACTOR FYTD 3",
         "filename": "Country Active Weight",
         "sub_tables": {
-          "detail": { "skiprows": 13 }
+          "detail": { "skiprows": 14 }
         }
       },
       "time_series_return_attr": {

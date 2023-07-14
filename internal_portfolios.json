@@ -658,7 +658,7 @@
         }
       },
       "specific": {
-        "settings": "FACTOR FYTD",
+        "settings": "FACTOR FYTD LT",
         "filename": "Specific Contrib by Factor",
         "sub_tables": {
           "detail": { "skiprows": 10 }
