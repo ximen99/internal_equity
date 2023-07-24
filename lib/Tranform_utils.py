@@ -233,7 +233,7 @@ def country_exposure(data: pd.DataFrame) -> pd.DataFrame:
                       .dropna()
                       .assign(Region=lambda x: x.apply(lambda y: 'China' if y['Country'] == 'China' else y['Region'], axis=1))
                       .groupby(["Region", "Country"])
-                      ["Active Weight (%)", "Weight (%)"]
+                      [["Active Weight (%)", "Weight (%)"]]
                       .agg({'Active Weight (%)': 'sum', 'Weight (%)': 'sum'})
                       [["Active Weight (%)"]]
                       )
