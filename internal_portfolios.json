@@ -1370,13 +1370,6 @@
     "portfolio_name": "Total Internal Active",
     "time_series": "FaCS Total Internal Active.xlsx",
     "tables": {
-      "facs": {
-        "folder_name": "Total Internal Active FACS vs BMK",
-        "filename": "Internal Active_Port_Facs exposure vs BMK",
-        "sub_tables": {
-          "detail": { "skiprows": 11 }
-        }
-      },
       "port_sum": {
         "folder_name": "Total Internal Active FACTOR FYTD",
         "filename": "Internal Active_Port_Portfolio Risk Summary",
@@ -1384,11 +1377,130 @@
           "detail": {}
         }
       },
+      "as_return_table": {
+        "folder_name": "Total Internal Active A S FYTD",
+        "filename": "Internal Active_Port_A-S Return Table",
+        "sub_tables": {
+          "detail": { "skiprows": 15 }
+        }
+      },
+      "as_return_decomp": {
+        "folder_name": "Total Internal Active A S FYTD",
+        "filename": "Internal Active_Port_Return Decomp Chart",
+        "sub_tables": {
+          "detail": { "skiprows": 16 }
+        }
+      },
+      "as_return_attribution": {
+        "folder_name": "Total Internal Active A S FYTD",
+        "filename": "Internal Active_Port_A-S by Industry",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
+      },
+      "factors_risk": {
+        "folder_name": "Total Internal Active FACTOR FYTD",
+        "filename": "Internal Active_Port_Factor risk",
+        "sub_tables": {
+          "detail": { "skiprows": 13, "start_row": 4 }
+        }
+      },
+      "industry_factor": {
+        "folder_name": "Total Internal Active FACTOR FYTD",
+        "filename": "Internal Active_Port_Industry Factor",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
+        }
+      },
+      "industry_risk": {
+        "folder_name": "Total Internal Active FACTOR FYTD",
+        "filename": "Internal Active_Port_Industry Risk",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "style_factor": {
+        "folder_name": "Total Internal Active FACTOR FYTD",
+        "filename": "Internal Active_Port_Style Factor",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
+      },
+      "style_risk": {
+        "folder_name": "Total Internal Active FACTOR FYTD",
+        "filename": "Internal Active_Port_Style Risk",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "country_factor": {
+        "folder_name": "Total Internal Active FACTOR FYTD",
+        "filename": "Internal Active_Port_Country Factor Perf",
+        "sub_tables": {
+          "detail": { "skiprows": 14 }
+        }
+      },
+      "country_risk": {
+        "folder_name": "Total Internal Active FACTOR FYTD",
+        "filename": "Internal Active_Port_Country Risk",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "factors_return_attribution": {
+        "folder_name": "Total Internal Active FACTOR FYTD",
+        "filename": "Internal Active_Port_Factor Return Attribution",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
+        }
+      },
+      "factors_return_decomp_by_factor": {
+        "folder_name": "Total Internal Active FACTOR FYTD",
+        "filename": "Internal Active_Port_Return Decomp by Factor",
+        "sub_tables": {
+          "detail": { "skiprows": 14, "start_row": 4 }
+        }
+      },
+      "specific": {
+        "folder_name": "Total Internal Active FACTOR FYTD",
+        "filename": "Internal Active_Port_Specific Contrib by Factor",
+        "sub_tables": {
+          "detail": { "skiprows": 10 }
+        }
+      },
       "sector_positioning": {
         "folder_name": "Total Internal Active FACTOR FYTD",
         "filename": "Internal Active_Port_Active Sector Positioning",
         "sub_tables": {
           "detail": { "skiprows": 11 }
+        }
+      },
+      "factors_top_bottom_by_factor": {
+        "folder_name": "Total Int Active A S no cons FYTD",
+        "filename": "Internal Active_Port_Top Bottom Names by Factor",
+        "sub_tables": {
+          "detail": { "skiprows": 10 }
+        }
+      },
+      "facs": {
+        "folder_name": "Total Internal Active FACS vs BMK",
+        "filename": "Internal Active_Port_Facs exposure vs BMK",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "facs_activeExp": {
+        "folder_name": "Total Internal Active FACS GEMLT",
+        "filename": "Internal Active_Port_GEMLT FACTOR ACTIVE EXP",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "time_series_return_attr": {
+        "folder_name": "Total Internal Active FACTOR FYTD 2",
+        "filename": "Internal Active_Port_Time-Series Return Attribution",
+        "sub_tables": {
+          "detail": { "skiprows": 13 }
         }
       }
     }
