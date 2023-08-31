@@ -7,7 +7,7 @@ from typing import List
 BASE_PATH = Path(
     r'S:\ISR\Branch - Investment Risk\Risk Reporting\All Dashboards Working\BPM External Dashboard\Auto\Time-series Data\archive\facs vs bmk')
 
-PORT_CODES = ['AU063F', 'ME170M', 'ME170T', 'ME170V', 'ME170W']
+PORT_CODES = ['MSCI EM ext_ptf']
 RE_DATE_FORMAT = '(\d{4}-\d{2}-\d{2})'
 RE_PORT_CODE = '(' + '|'.join(PORT_CODES) + ')'
 data_df_dict = {}
