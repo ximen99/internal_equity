@@ -5,7 +5,7 @@ warnings.filterwarnings("ignore")
 
 
 def main():
-    this_qtr = '2023-07-31'
+    this_qtr = '2023-08-31'
     last_qtr = '2023-06-30'
     dashboard = lib.Dashboard(
         this_qtr, last_qtr, config.EXTERNAL_JSON_DIR, config.EXTERNAL_DIR)

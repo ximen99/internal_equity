@@ -67,4 +67,4 @@ class Dashboard:
     def process(self) -> None:
         self.loop_portfolios()
         self.loop_compile_dict()
-        # self.calculate_country_exposure()
+        self.calculate_country_exposure()
