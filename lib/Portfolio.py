@@ -157,6 +157,13 @@ class Portfolio:
     def _transform_attribution_matrix(self, attrubution_matrix) -> None:
         df = self.tables_dict['specific']['detail']['df']
         result_df = attrubution_matrix(df)
+        ts_portfolios = ['tem', 'wasatch', 'shroders', 'gqg', 'arga']
+        # update time series file
+        if self.portfolio_config['portfolio_prefix'] in ts_portfolios:
+            file_dir = self.dir.time_series_dir / \
+                f'{self.portfolio_config["portfolio_prefix"]}_sector_active_weight.csv'
+            tu.add_time_series_sector_weight(self.date, file_dir, result_df)
+
         file_name = self.portfolio_config['portfolio_prefix'] + \
             '_' + 'attribution_matrix.csv'
         self.transform_dfs.append({'df': result_df, 'save_to_name': file_name})

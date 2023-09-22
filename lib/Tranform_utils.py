@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pathlib as p
 from . import config
+from datetime import date
 
 
 def remove_substring_from_columns(data: pd.DataFrame, patterns: List[str]) -> pd.DataFrame:
@@ -48,6 +49,16 @@ def time_series(file_dir: p.Path, dataframe_to_append: pd.DataFrame) -> pd.DataF
         )
     appended_data.to_excel(file_dir)
     return appended_data
+
+
+def add_time_series_sector_weight(date: str, file_dir: p.Path, df_to_append: pd.DataFrame) -> pd.DataFrame:
+    series_to_append = df_to_append['Avg Act Weight'].rename(date)
+    df_time_series = pd.read_csv(file_dir, index_col=0)
+    if date in df_time_series.index:
+        df_time_series = df_time_series.drop(date)
+    df_time_series = df_time_series.append(
+        series_to_append).sort_index(ascending=True)
+    df_time_series.to_csv(file_dir)
 
 
 def remove_percentages(data: pd.DataFrame, column_start: str = None) -> pd.DataFrame:
