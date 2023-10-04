@@ -18,8 +18,8 @@ class Dashboard:
 
     def loop_portfolios(self) -> None:
         for portfolio_name in self.port_data:
-            # if portfolio_name in ['msciexca']:
-            if portfolio_name not in ['msci_em_ext']:
+            if portfolio_name in ['msciexca', 'ti_dev']:
+                # if portfolio_name not in ['gl_th']:
                 continue
             portfolio = self.portfolio_generator(portfolio_name)
             portfolio.load()
@@ -68,4 +68,4 @@ class Dashboard:
     def process(self) -> None:
         self.loop_portfolios()
         self.loop_compile_dict()
-        # self.calculate_country_exposure()
+        self.calculate_country_exposure()

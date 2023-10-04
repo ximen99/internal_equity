@@ -64,13 +64,13 @@ def month_end_iterator(start_date: str, end_date: str):
 
 port_data = json.load(open(lib.config.EXTERNAL_JSON_DIR, 'r'))
 time_series_data = {}
-for date in month_end_iterator('2023-03-31', '2023-08-31'):
+for date in month_end_iterator('2023-06-30', '2023-08-31'):
     pth = base_path / date.strftime('%Y%m%d') / 'Working' / 'Python Data'
-    for prefix in ['arga', 'gqg', 'shroders', 'wasatch']:
-        df = pd.read_csv(pth / f'{prefix}_attribution_matrix.csv')
-        df = df[['GICS Sector Name', 'Avg Act Weight']]
-        df.columns = ['GICS Sector Name', date.strftime('%Y-%m-%d')]
-        df = df.set_index('GICS Sector Name')
+    for prefix in ['tem']:
+        df = pd.read_csv(pth / f'{prefix}_sector_positioning.csv')
+        df = df[['Name', 'Active Exposure']]
+        df.columns = ['Name', date.strftime('%Y-%m-%d')]
+        df = df.set_index('Name')
         df = df.T
         if prefix in time_series_data:
             time_series_data[prefix] = time_series_data[prefix].append(df)
@@ -78,4 +78,4 @@ for date in month_end_iterator('2023-03-31', '2023-08-31'):
             time_series_data[prefix] = df
 
 for prefix, df in time_series_data.items():
-    df.to_csv(base_path / f'{prefix}_attribution_matrix_time_series.csv')
+    df.to_csv(base_path / f'{prefix}_sector_positioning.csv')

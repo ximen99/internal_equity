@@ -1371,6 +1371,35 @@
     "time_series": "FaCS Total Internal Active.xlsx",
     "tables": {
       "port_sum": {
+        "folder_name": "Total Internal Active FACTOR FYTD_V1",
+        "filename": "Internal Active_Port_Portfolio Risk Summary",
+        "sub_tables": {
+          "detail": {}
+        }
+      },
+      "sector_positioning": {
+        "folder_name": "Total Internal Active FACTOR FYTD_V1",
+        "filename": "Internal Active_Port_Active Sector Positioning",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      },
+      "facs": {
+        "folder_name": "Total Internal Active FACS vs BMK",
+        "filename": "Internal Active_Port_Facs exposure vs BMK",
+        "sub_tables": {
+          "detail": { "skiprows": 11 }
+        }
+      }
+    }
+  },
+  "ti_dev": {
+    "portfolio_code": "Internal Active_Port",
+    "portfolio_prefix": "ti",
+    "portfolio_name": "Total Internal Active",
+    "time_series": "FaCS Total Internal Active.xlsx",
+    "tables": {
+      "port_sum": {
         "folder_name": "Total Internal Active FACTOR FYTD",
         "filename": "Internal Active_Port_Portfolio Risk Summary",
         "sub_tables": {

@@ -52,7 +52,7 @@ def time_series(file_dir: p.Path, dataframe_to_append: pd.DataFrame) -> pd.DataF
 
 
 def add_time_series_sector_weight(date: str, file_dir: p.Path, df_to_append: pd.DataFrame) -> pd.DataFrame:
-    series_to_append = df_to_append['Avg Act Weight'].rename(date)
+    series_to_append = df_to_append['Active Exposure'].rename(date)
     df_time_series = pd.read_csv(file_dir, index_col=0)
     if date in df_time_series.index:
         df_time_series = df_time_series.drop(date)
