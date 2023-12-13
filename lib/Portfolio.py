@@ -20,8 +20,12 @@ class Portfolio:
         table_config = self.portfolio_config['tables'][table_name]
         portfolio_prefix = self.portfolio_config['portfolio_prefix']
         table = Table(self.dir.source_dir, self.date,
-                      portfolio_code, portfolio_prefix, table_config, table_name)
-        table.load()
+                      portfolio_code, portfolio_prefix, table_config, table_name)            
+        try:
+            table.load()
+        except Exception as e:
+            print(f"An error occurred: {e}. Skipping load.")
+
         self.tables_dict[table_name] = table.table_dict
 
     def load(self) -> None:
