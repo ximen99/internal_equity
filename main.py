@@ -8,7 +8,7 @@ def main():
     this_qtr = '2023-11-30'
     last_qtr = '2023-09-30'
     dashboard = lib.Dashboard(
-        this_qtr, last_qtr, config.INTERNAL_JSON_DIR, config.INTERNAL_DIR)
+        this_qtr, last_qtr, config.EXTERNAL_JSON_DIR, config.EXTERNAL_DIR)
     dashboard.process()
 
 

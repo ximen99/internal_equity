@@ -19,7 +19,7 @@ class Dashboard:
     def loop_portfolios(self) -> None:
         for portfolio_name in self.port_data:
             if portfolio_name in ['msciexca', 'ti_dev']:
-                # if portfolio_name not in ['gl_th']:
+            # if portfolio_name not in ['gl_th']:
                 continue
             portfolio = self.portfolio_generator(portfolio_name)
             portfolio.load()
