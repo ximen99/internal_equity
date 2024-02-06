@@ -421,7 +421,7 @@
         }
       },
       "factors_top_bottom_by_factor": {
-        "settings": "A S no cons FYTD",
+        "settings": "A S no cons FYTD 2",
         "filename": "Top Bottom Names by Factor",
         "sub_tables": {
           "detail": { "skiprows": 10 }
